@@ -1,0 +1,5270 @@
+// converted by version 1.3
+// on Mon Nov 23 17:23:12 MSK 2020
+
+.package tonwallet {
+	.aid 0x31:0x31:0x32:0x32:0x33:0x33:0x34:0x34:0x35:0x35:0x36:0x36;
+	.version 1.0;
+
+	.imports {
+		0xA0:0x0:0x0:0x0:0x62:0x0:0x1 1.0;		//java/lang
+		0xA0:0x0:0x0:0x0:0x62:0x1:0x1 1.5;		//javacard/framework
+		0xA0:0x0:0x0:0x1:0x51:0x0 1.0;		//org/globalplatform
+		0xA0:0x0:0x0:0x0:0x62:0x1:0x2 1.5;		//javacard/security
+		0xA0:0x0:0x0:0x0:0x62:0x2:0x1 1.5;		//javacardx/crypto
+		0xD1:0x56:0x0:0x1:0x32:0x0:0xA 1.0;		//com/ftsafe/javacardx/btcmgr
+		0xD1:0x56:0x0:0x1:0x32:0x0:0xC 1.0;		//com/ftsafe/javacard/debug
+	}
+
+	.applet {
+		0x31:0x31:0x32:0x32:0x33:0x33:0x34:0x34:0x35:0x35:0x36:0x36:0x0 TonWalletApplet;
+	}
+
+	.constantPool {
+		// 0
+		instanceFieldRef short ApduDataProtectionHandler/hmacVerificationFailCounter;
+		// 1
+		instanceFieldRef byte[] ApduDataProtectionHandler/mac;
+		// 2
+		instanceFieldRef byte[] ApduDataProtectionHandler/lensBuf;
+		// 3
+		instanceFieldRef byte[] ApduDataProtectionHandler/key;
+		// 4
+		instanceFieldRef HmacSha256Impl ApduDataProtectionHandler/sigImpl;
+		// 5
+		instanceFieldRef short CardAuthenticationHandler/numPasswordTries;
+		// 6
+		instanceFieldRef boolean CardAuthenticationHandler/isEncryptedPasswordSet;
+		// 7
+		instanceFieldRef 3.11 CardAuthenticationHandler/shaMessageDigest;
+		// 8
+		instanceFieldRef 4.1 CardAuthenticationHandler/cipherDec;
+		// 9
+		instanceFieldRef 3.20 CardAuthenticationHandler/aesKey;
+		// 10
+		instanceFieldRef boolean CommonSecretHandler/isEncryptedCommonSecretSet;
+		// 11
+		instanceFieldRef byte[] CommonSecretHandler/encryptedCommonSecret;
+		// 12
+		instanceFieldRef byte[] CommonSecretHandler/decryptedCommonSecret;
+		// 13
+		instanceFieldRef 3.11 CommonSecretHandler/md;
+		// 14
+		instanceFieldRef 4.1 CommonSecretHandler/cipherDec;
+		// 15
+		instanceFieldRef 3.20 CommonSecretHandler/aesKey;
+		// 16
+		instanceFieldRef byte[] HmacSha256Impl/tmpBuffer;
+		// 17
+		instanceFieldRef byte[] HmacSha256Impl/ipadK;
+		// 18
+		instanceFieldRef byte[] HmacSha256Impl/opadK;
+		// 19
+		instanceFieldRef 3.11 HmacSha256Impl/md;
+		// 20
+		instanceFieldRef short KeyChain/deleteKeyChunkCounter;
+		// 21
+		instanceFieldRef short KeyChain/deleteKeyChunkNumOfPackets;
+		// 22
+		instanceFieldRef short KeyChain/tailLenForDeleteKeyChunk;
+		// 23
+		instanceFieldRef short KeyChain/deleteKeyChunkIsDone;
+		// 24
+		instanceFieldRef short KeyChain/deleteKeyRecordCounter;
+		// 25
+		instanceFieldRef short KeyChain/tailLenForDeleteKeyRecord;
+		// 26
+		instanceFieldRef short KeyChain/deleteKeyRecordNumOfPackets;
+		// 27
+		instanceFieldRef short KeyChain/deleteKeyRecordIsDone;
+		// 28
+		instanceFieldRef byte[] KeyChain/keyStore;
+		// 29
+		instanceFieldRef short[] KeyChain/keyLens;
+		// 30
+		instanceFieldRef short[] KeyChain/keyOffsets;
+		// 31
+		instanceFieldRef byte[] KeyChain/keyMacs;
+		// 32
+		instanceFieldRef byte[] KeyChain/keyTmpBuffer;
+		// 33
+		instanceFieldRef ApduDataProtectionHandler KeyChain/apduDataProtectionHandler;
+		// 34
+		instanceFieldRef short KeyChain/numberOfStoredKeys;
+		// 35
+		instanceFieldRef short KeyChain/payloadLen;
+		// 36
+		instanceFieldRef short KeyChain/newKeySize;
+		// 37
+		instanceFieldRef short KeyChain/totalIncomingBytesOfNewKey;
+		// 38
+		instanceFieldRef short KeyChain/indOfKeyToChange;
+		// 39
+		instanceFieldRef short KeyChain/indOfKeyToDelete;
+		// 40
+		instanceFieldRef short KeyChain/keyOffsetToDelete;
+		// 41
+		instanceFieldRef short KeyChain/keyLenToDelete;
+		// 42
+		instanceFieldRef short KeyChain/offsetOfNextKey;
+		// 43
+		instanceFieldRef short KeyChain/totalLen;
+		// 44
+		instanceFieldRef short PinHandler/numPinFails;
+		// 45
+		instanceFieldRef ApduDataProtectionHandler PinHandler/apduDataProtectionHandler;
+		// 46
+		instanceFieldRef short RecoveryDataHandler/realRecoveryDataLen;
+		// 47
+		instanceFieldRef boolean RecoveryDataHandler/isRecoveryDataSet;
+		// 48
+		instanceFieldRef byte[] RecoveryDataHandler/recoveryData;
+		// 49
+		instanceFieldRef byte[] RecoveryDataHandler/recoveryDataHash;
+		// 50
+		instanceFieldRef 3.11 RecoveryDataHandler/md;
+		// 51
+		instanceFieldRef byte[] SaultHandler/sault;
+		// 52
+		instanceFieldRef 3.14 SaultHandler/rd;
+		// 53
+		instanceFieldRef boolean SerialNumberHandler/isSerialNumberSet;
+		// 54
+		instanceFieldRef byte[] SerialNumberHandler/serialNumber;
+		// 55
+		instanceFieldRef byte[] TonCryptoHandler/tmpBuffer;
+		// 56
+		instanceFieldRef byte[] TonCryptoHandler/pathBuffer;
+		// 57
+		instanceFieldRef ApduDataProtectionHandler TonCryptoHandler/apduDataProtectionHandler;
+		// 58
+		instanceFieldRef PinHandler TonCryptoHandler/pinHandler;
+		// 59
+		instanceFieldRef TonCryptoHandler TonWalletApplet/cryptoHandler;
+		// 60
+		instanceFieldRef KeyChain TonWalletApplet/keyChain;
+		// 61
+		instanceFieldRef CardAuthenticationHandler TonWalletApplet/cardAuthenticationHandler;
+		// 62
+		instanceFieldRef PinHandler TonWalletApplet/pinHandler;
+		// 63
+		instanceFieldRef CommonHandler TonWalletApplet/commonHandler;
+		// 64
+		instanceFieldRef CommonSecretHandler TonWalletApplet/commonSecretHandler;
+		// 65
+		instanceFieldRef RecoveryDataHandler TonWalletApplet/recoveryDataHandler;
+		// 66
+		instanceFieldRef SerialNumberHandler TonWalletApplet/serialNumberHandler;
+		// 67
+		staticFieldRef CommonSecretHandler CommonSecretHandler/commonSecretHandler;
+		// 68
+		classRef CommonSecretHandler;
+		// 69
+		staticMethodRef CommonSecretHandler/<init>()V;
+		// 70
+		staticMethodRef HmacSha256Impl/getInstance()Ltonwallet/HmacSha256Impl;;
+		// 71
+		staticMethodRef 0.0.0()V;		// java/lang/Object.<init>()V
+		// 72
+		virtualMethodRef HmacSha256Impl/sign([BS[BSS[BS)S;
+		// 73
+		staticMethodRef 1.16.0([BS[BSS)B;		// javacard/framework/Util.arrayCompare([BS[BSS)B
+		// 74
+		staticMethodRef ApduDataProtectionHandler/verifyMac([BSS[BS)B;
+		// 75
+		staticMethodRef 1.7.1(S)V;		// javacard/framework/ISOException.throwIt(S)V
+		// 76
+		staticFieldRef HmacSha256Impl HmacSha256Impl/hmacSha256Impl;
+		// 77
+		classRef HmacSha256Impl;
+		// 78
+		staticMethodRef HmacSha256Impl/<init>()V;
+		// 79
+		virtualMethodRef 1.10.1()[B;		// getBuffer()[B
+		// 80
+		staticMethodRef 2.3.8(B)Z;		// org/globalplatform/GPSystem.setCardContentState(B)Z
+		// 81
+		staticMethodRef SaultHandler/getInstance()Ltonwallet/SaultHandler;;
+		// 82
+		virtualMethodRef SaultHandler/compareSault([BS)Z;
+		// 83
+		staticMethodRef 1.16.3([BSSB)S;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+		// 84
+		virtualMethodRef 3.11.4()V;		// reset()V
+		// 85
+		virtualMethodRef 3.11.5([BSS)V;		// update([BSS)V
+		// 86
+		staticFieldRef KeyChain KeyChain/keyChain;
+		// 87
+		classRef KeyChain;
+		// 88
+		staticMethodRef KeyChain/<init>()V;
+		// 89
+		staticMethodRef ApduDataProtectionHandler/verifyMacForApduDataChunk(Ljavacard/framework/APDU;S)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 90
+		virtualMethodRef 1.10.6()S;		// setIncomingAndReceive()S
+		// 91
+		staticMethodRef ApduDataProtectionHandler/verifySaultAndMacForApduDataChunk(Ljavacard/framework/APDU;S)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 92
+		staticMethodRef 1.16.4([BS)S;		// javacard/framework/Util.getShort([BS)S
+		// 93
+		staticMethodRef 1.16.6([BSS)S;		// javacard/framework/Util.setShort([BSS)S
+		// 94
+		staticFieldRef CardAuthenticationHandler CardAuthenticationHandler/cardAuthenticationHandler;
+		// 95
+		classRef CardAuthenticationHandler;
+		// 96
+		staticMethodRef CardAuthenticationHandler/<init>()V;
+		// 97
+		staticFieldRef ApduDataProtectionHandler ApduDataProtectionHandler/apduDataProtectionHandler;
+		// 98
+		staticMethodRef 1.8.13(SB)[B;		// javacard/framework/JCSystem.makeTransientByteArray(SB)[B
+		// 99
+		staticFieldRef byte[] CardAuthenticationHandler/encryptedPassword;
+		// 100
+		staticFieldRef byte[] CardAuthenticationHandler/decryptedPassword;
+		// 101
+		staticFieldRef byte[] CardAuthenticationHandler/aesKeyBytes;
+		// 102
+		staticFieldRef byte[] CardAuthenticationHandler/decryptedPasswordHash;
+		// 103
+		staticMethodRef 3.11.0(BZ)Ljavacard/security/MessageDigest;;		// javacard/security/MessageDigest.getInstance(BZ)Ljavacard/security/MessageDigest;
+			.descriptor	Ljavacard/security/MessageDigest;	3.11;
+
+		// 104
+		classRef ApduDataProtectionHandler;
+		// 105
+		virtualMethodRef ApduDataProtectionHandler/verifyInputApduData(Ljavacard/framework/APDU;S)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 106
+		staticMethodRef 4.1.0(BZ)Ljavacardx/crypto/Cipher;;		// javacardx/crypto/Cipher.getInstance(BZ)Ljavacardx/crypto/Cipher;
+			.descriptor	Ljavacardx/crypto/Cipher;	4.1;
+
+		// 107
+		staticMethodRef ApduDataProtectionHandler/<init>()V;
+		// 108
+		staticMethodRef 3.13.0(BSZ)Ljavacard/security/Key;;		// javacard/security/KeyBuilder.buildKey(BSZ)Ljavacard/security/Key;
+			.descriptor	Ljavacard/security/Key;	3.0;
+
+		// 109
+		staticMethodRef KeyChain/resetKeyOffsetAndlen(S)V;
+		// 110
+		staticMethodRef KeyChain/getOccupiedStorageSize()S;
+		// 111
+		staticMethodRef KeyChain/findKeyRecordIndex([BS)S;
+		// 112
+		virtualMethodRef ApduDataProtectionHandler/verifyMacOfKey([BSS[BS)V;
+		// 113
+		virtualMethodRef 1.10.5([BSS)V;		// sendBytesLong([BSS)V
+		// 114
+		classRef 3.20;		// javacard/security/AESKey
+		// 115
+		classRef 1.13;		// javacard/framework/SystemException
+		// 116
+		staticMethodRef ApduDataProtectionHandler/getInstance()Ltonwallet/ApduDataProtectionHandler;;
+		// 117
+		staticFieldRef ApduDataProtectionHandler CardAuthenticationHandler/apduDataProtectionHandler;
+		// 118
+		staticMethodRef CommonSecretHandler/getInstance()Ltonwallet/CommonSecretHandler;;
+		// 119
+		staticMethodRef 1.8.1()V;		// javacard/framework/JCSystem.beginTransaction()V
+		// 120
+		staticMethodRef 1.8.2()V;		// javacard/framework/JCSystem.commitTransaction()V
+		// 121
+		staticMethodRef KeyChain/resetKeyRecord(S)V;
+		// 122
+		staticMethodRef KeyChain/setKeyRecord(SSS[BS)V;
+		// 123
+		virtualMethodRef ApduDataProtectionHandler/verifyInputApduDataContainingKeyChunk(Ljavacard/framework/APDU;)S;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 124
+		staticMethodRef KeyChain/setMac(S[BS)V;
+		// 125
+		staticMethodRef 1.16.1([BS[BSS)S;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+		// 126
+		staticFieldRef PinHandler PinHandler/pinHandler;
+		// 127
+		classRef PinHandler;
+		// 128
+		staticMethodRef PinHandler/<init>()V;
+		// 129
+		staticFieldRef CommonSecretHandler CardAuthenticationHandler/commonSecretHandler;
+		// 130
+		staticMethodRef 1.16.2([BS[BSS)S;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+		// 131
+		staticMethodRef 5.0.7(B[BSS)S;		// com/ftsafe/javacardx/btcmgr/CoinManager.verifyPIN(B[BSS)S
+		// 132
+		staticFieldRef RecoveryDataHandler RecoveryDataHandler/recoveryDataHandler;
+		// 133
+		classRef RecoveryDataHandler;
+		// 134
+		staticMethodRef RecoveryDataHandler/<init>()V;
+		// 135
+		virtualMethodRef 1.10.7()S;		// setOutgoing()S
+		// 136
+		virtualMethodRef 3.11.1([BSS[BS)S;		// doFinal([BSS[BS)S
+		// 137
+		virtualMethodRef 1.10.9(S)V;		// setOutgoingLength(S)V
+		// 138
+		virtualMethodRef 1.10.4(SS)V;		// sendBytes(SS)V
+		// 139
+		virtualMethodRef 4.1.4(Ljavacard/security/Key;B[BSS)V;		// init(Ljavacard/security/Key;B[BSS)V
+			.descriptor	Ljavacard/security/Key;	3.0;
+
+		// 140
+		virtualMethodRef RecoveryDataHandler/resetRecoveryData()V;
+		// 141
+		staticFieldRef SaultHandler SaultHandler/saultHandler;
+		// 142
+		classRef SaultHandler;
+		// 143
+		staticMethodRef SaultHandler/<init>()V;
+		// 144
+		virtualMethodRef 4.1.1([BSS[BS)S;		// doFinal([BSS[BS)S
+		// 145
+		staticMethodRef 3.14.0(B)Ljavacard/security/RandomData;;		// javacard/security/RandomData.getInstance(B)Ljavacard/security/RandomData;
+			.descriptor	Ljavacard/security/RandomData;	3.14;
+
+		// 146
+		virtualMethodRef CommonSecretHandler/decryptCommonSecret([B[BSS)V;
+		// 147
+		staticMethodRef SaultHandler/generateNewSault()V;
+		// 148
+		virtualMethodRef 3.14.1([BSS)V;		// generateData([BSS)V
+		// 149
+		staticFieldRef SerialNumberHandler SerialNumberHandler/serialSecretHandler;
+		// 150
+		classRef SerialNumberHandler;
+		// 151
+		staticMethodRef SerialNumberHandler/<init>()V;
+		// 152
+		virtualMethodRef CommonSecretHandler/getCommonSecret()[B;
+		// 153
+		virtualMethodRef ApduDataProtectionHandler/generateHmacKey([B[B)V;
+		// 154
+		staticFieldRef TonCryptoHandler TonCryptoHandler/tonCryptoHandler;
+		// 155
+		classRef TonCryptoHandler;
+		// 156
+		staticMethodRef TonCryptoHandler/<init>()V;
+		// 157
+		staticMethodRef SerialNumberHandler/getInstance()Ltonwallet/SerialNumberHandler;;
+		// 158
+		staticFieldRef SerialNumberHandler CommonHandler/serialNumberHandler;
+		// 159
+		staticFieldRef byte[] TonCryptoHandler/HD_PATH_PREFIX;
+		// 160
+		staticFieldRef CommonSecretHandler CommonHandler/commonSecretHandler;
+		// 161
+		staticMethodRef PinHandler/getInstance()Ltonwallet/PinHandler;;
+		// 162
+		staticMethodRef CardAuthenticationHandler/getInstance()Ltonwallet/CardAuthenticationHandler;;
+		// 163
+		virtualMethodRef PinHandler/getNumPinFails()S;
+		// 164
+		staticMethodRef 5.0.5([BSS[BS[BS)S;		// com/ftsafe/javacardx/btcmgr/CoinManager.getCoinPubData([BSS[BS[BS)S
+		// 165
+		staticFieldRef byte[] TonCryptoHandler/ROOT_HD_PATH;
+		// 166
+		virtualMethodRef ApduDataProtectionHandler/verifyInputApduDataContainingDataForSigningAndPath(Ljavacard/framework/APDU;)[B;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 167
+		staticMethodRef 5.0.11(S[BSS[BS[BSS)S;		// com/ftsafe/javacardx/btcmgr/CoinManager.signCoinDataED25519(S[BSS[BS[BSS)S
+		// 168
+		virtualMethodRef ApduDataProtectionHandler/verifyInputApduDataContainingDataForSigning(Ljavacard/framework/APDU;)S;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 169
+		staticFieldRef byte[] TonCryptoHandler/ROOT_HD_PATH_IN_LV;
+		// 170
+		staticMethodRef 1.3.0()V;		// javacard/framework/Applet.<init>()V
+		// 171
+		staticMethodRef TonCryptoHandler/getInstance()Ltonwallet/TonCryptoHandler;;
+		// 172
+		staticFieldRef CardAuthenticationHandler CommonHandler/cardAuthenticationHandler;
+		// 173
+		staticMethodRef KeyChain/getInstance()Ltonwallet/KeyChain;;
+		// 174
+		staticFieldRef CommonHandler CommonHandler/commonHandler;
+		// 175
+		classRef CommonHandler;
+		// 176
+		staticMethodRef CommonHandler/<init>()V;
+		// 177
+		staticMethodRef CommonHandler/getInstance()Ltonwallet/CommonHandler;;
+		// 178
+		virtualMethodRef CommonSecretHandler/isEncryptedCommonSecretSet()Z;
+		// 179
+		virtualMethodRef CardAuthenticationHandler/isEncryptedPasswordSet()Z;
+		// 180
+		staticMethodRef RecoveryDataHandler/getInstance()Ltonwallet/RecoveryDataHandler;;
+		// 181
+		virtualMethodRef SerialNumberHandler/isSerialNumberSet()Z;
+		// 182
+		staticMethodRef 2.3.1()B;		// org/globalplatform/GPSystem.getCardContentState()B
+		// 183
+		classRef TonWalletApplet;
+		// 184
+		staticMethodRef TonWalletApplet/<init>()V;
+		// 185
+		virtualMethodRef 1.3.2([BSB)V;		// register([BSB)V
+		// 186
+		virtualMethodRef 1.3.3()Z;		// selectingApplet()Z
+		// 187
+		staticMethodRef 5.0.10(B)S;		// com/ftsafe/javacardx/btcmgr/CoinManager.setCurve(B)S
+		// 188
+		virtualMethodRef CommonHandler/getAppInfo(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 189
+		virtualMethodRef CardAuthenticationHandler/setEncryptedPassword(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 190
+		virtualMethodRef CardAuthenticationHandler/getHashOfEncryptedPassword(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 191
+		virtualMethodRef CommonSecretHandler/setEncryptedCommonSecret(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 192
+		virtualMethodRef CommonSecretHandler/getHashOfEncryptedCommonSecret(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 193
+		virtualMethodRef SerialNumberHandler/setSerialNumber(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 194
+		virtualMethodRef SerialNumberHandler/getSerialNumber(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 195
+		virtualMethodRef CommonHandler/finishPers(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 196
+		virtualMethodRef CardAuthenticationHandler/verifyPassword(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 197
+		virtualMethodRef KeyChain/getKeyIndexInStorageAndLen(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 198
+		virtualMethodRef KeyChain/getKeyChunk(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 199
+		virtualMethodRef KeyChain/checkAvailabilityOfStorageFreeVolumeForNewKey(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 200
+		virtualMethodRef KeyChain/addKeyChunk(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 201
+		virtualMethodRef KeyChain/initiateChangeOfKey(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 202
+		virtualMethodRef KeyChain/changeKeyChunk(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 203
+		virtualMethodRef KeyChain/initiateDeleteOfKey(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 204
+		virtualMethodRef KeyChain/getNumberOfKeys(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 205
+		virtualMethodRef KeyChain/getFreeStorageSize(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 206
+		virtualMethodRef KeyChain/getOccupiedStorageSize(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 207
+		virtualMethodRef KeyChain/getHmac(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 208
+		virtualMethodRef KeyChain/reset(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 209
+		virtualMethodRef KeyChain/checkKeyHmacConsistency(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 210
+		virtualMethodRef SaultHandler/getSault(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 211
+		virtualMethodRef TonCryptoHandler/getPublicKey(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 212
+		virtualMethodRef TonCryptoHandler/getPublicKeyWithDefaultHDPath(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 213
+		virtualMethodRef TonCryptoHandler/signShortMessage(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 214
+		virtualMethodRef TonCryptoHandler/signShortMessageWithDefaultPath(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 215
+		virtualMethodRef PinHandler/checkPin(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 216
+		virtualMethodRef RecoveryDataHandler/addRecoveryDataPart(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 217
+		virtualMethodRef RecoveryDataHandler/getRecoveryDataPart(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 218
+		virtualMethodRef RecoveryDataHandler/resetRecoveryData(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 219
+		virtualMethodRef RecoveryDataHandler/getHashOfRecoveryData(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 220
+		virtualMethodRef RecoveryDataHandler/getRecoveryDataLen(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 221
+		virtualMethodRef RecoveryDataHandler/isRecoveryDataSet(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 222
+		virtualMethodRef KeyChain/getDeleteKeyChunkCounter(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 223
+		virtualMethodRef KeyChain/getDeleteKeyRecordCounter(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 224
+		virtualMethodRef KeyChain/getDeleteKeyChunkNumOfPackets(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 225
+		virtualMethodRef KeyChain/getDeleteKeyRecordNumOfPackets(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 226
+		virtualMethodRef KeyChain/deleteKeyChunk(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 227
+		virtualMethodRef KeyChain/deleteKeyRecord(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+		// 228
+		staticMethodRef 6.0.5()V;		// com/ftsafe/javacard/debug/DebugHelper.println()V
+		// 229
+		staticMethodRef 6.0.2(B)V;		// com/ftsafe/javacard/debug/DebugHelper.print(B)V
+	}
+
+	.class public ApduDataProtectionHandler 0 extends 0.0 {		// extends java/lang/Object
+
+		.fields {
+			private byte[] lensBuf 0;		// [B
+			private byte[] key 1;		// [B
+			private byte[] mac 2;		// [B
+			private HmacSha256Impl sigImpl 3;		// Ltonwallet/HmacSha256Impl;
+			private short hmacVerificationFailCounter 4;		// S
+			private static final short KEY_SIZE = 32;		// S
+			private static final short MAX_HMAC_FAIL_TRIES = 20;		// S
+			private static final short PAYLOAD_MAX_SIZE = 223;		// S
+			private static ApduDataProtectionHandler apduDataProtectionHandler;		// Ltonwallet/ApduDataProtectionHandler;
+		}
+
+		.publicMethodTable 1 {
+			equals(Ljava/lang/Object;)Z;
+			generateHmacKey([B[B)V;
+			verifyMacOfKey([BSS[BS)V;
+			verifyInputApduData(Ljavacard/framework/APDU;S)V;
+			verifyInputApduDataContainingKeyChunk(Ljavacard/framework/APDU;)S;
+			verifyInputApduDataContainingDataForSigning(Ljavacard/framework/APDU;)S;
+			verifyInputApduDataContainingDataForSigningAndPath(Ljavacard/framework/APDU;)[B;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public static getInstance()Ltonwallet/ApduDataProtectionHandler; 0 {
+			.stack 2;
+			.locals 0;
+
+				L0:	getstatic_a 97;		// reference tonwallet/ApduDataProtectionHandler.apduDataProtectionHandler
+					ifnonnull L2;
+				L1:	new 104;		// tonwallet/ApduDataProtectionHandler
+					dup;
+					invokespecial 107;		// tonwallet/ApduDataProtectionHandler.<init>()V
+					putstatic_a 97;		// reference tonwallet/ApduDataProtectionHandler.apduDataProtectionHandler
+				L2:	getstatic_a 97;		// reference tonwallet/ApduDataProtectionHandler.apduDataProtectionHandler
+					areturn;
+		}
+
+		.method private <init>()V {
+			.stack 3;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 71;		// java/lang/Object.<init>()V
+					aload_0;
+					sconst_0;
+					putfield_s 0;		// short tonwallet/ApduDataProtectionHandler.hmacVerificationFailCounter
+				L1:	aload_0;
+					bspush 32;
+					sconst_2;
+					invokestatic 98;		// javacard/framework/JCSystem.makeTransientByteArray(SB)[B
+					putfield_a 1;		// reference tonwallet/ApduDataProtectionHandler.mac
+				L2:	goto L4;
+				L3:	pop;
+					aload_0;
+					bspush 32;
+					newarray 11;
+					putfield_a 1;		// reference tonwallet/ApduDataProtectionHandler.mac
+				L4:	aload_0;
+					sconst_3;
+					newarray 11;
+					putfield_a 2;		// reference tonwallet/ApduDataProtectionHandler.lensBuf
+					aload_0;
+					bspush 32;
+					newarray 11;
+					putfield_a 3;		// reference tonwallet/ApduDataProtectionHandler.key
+					aload_0;
+					invokestatic 70;		// tonwallet/HmacSha256Impl.getInstance()Ltonwallet/HmacSha256Impl;
+					putfield_a 4;		// reference tonwallet/ApduDataProtectionHandler.sigImpl
+					return;
+			.exceptionTable {
+				// start_block end_block handler_block catch_type_index
+				L1 L2 L3 115;
+			}
+		}
+
+		.method public generateHmacKey([B[B)V 1 {
+			.stack 8;
+			.locals 0;
+
+				L0:	getfield_a_this 4;		// reference tonwallet/ApduDataProtectionHandler.sigImpl
+					aload_2;
+					sconst_0;
+					aload_1;
+					sconst_0;
+					bspush 32;
+					getfield_a_this 3;		// reference tonwallet/ApduDataProtectionHandler.key
+					sconst_0;
+					invokevirtual 72;		// sign([BS[BSS[BS)S
+					pop;
+					return;
+		}
+
+		.method private verifyMac([BSS[BS)B {
+			.stack 8;
+			.locals 1;
+
+				L0:	getfield_a_this 4;		// reference tonwallet/ApduDataProtectionHandler.sigImpl
+					getfield_a_this 3;		// reference tonwallet/ApduDataProtectionHandler.key
+					sconst_0;
+					aload_1;
+					sload_2;
+					sload_3;
+					getfield_a_this 1;		// reference tonwallet/ApduDataProtectionHandler.mac
+					sconst_0;
+					invokevirtual 72;		// sign([BS[BSS[BS)S
+					pop;
+					aload 4;
+					sload 5;
+					getfield_a_this 1;		// reference tonwallet/ApduDataProtectionHandler.mac
+					sconst_0;
+					bspush 32;
+					invokestatic 73;		// javacard/framework/Util.arrayCompare([BS[BSS)B
+					sstore 6;
+				L1:	sload 6;
+					sreturn;
+		}
+
+		.method public verifyMacOfKey([BSS[BS)V 2 {
+			.stack 6;
+			.locals 1;
+
+				L0:	aload_0;
+					aload_1;
+					sload_2;
+					sload_3;
+					aload 4;
+					sload 5;
+					invokespecial 74;		// tonwallet/ApduDataProtectionHandler.verifyMac([BSS[BS)B
+					sstore 6;
+				L1:	sload 6;
+					ifeq L3;
+				L2:	sspush -28926;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L3:	return;
+		}
+
+		.method private verifyMacForApduDataChunk(Ljavacard/framework/APDU;S)V {
+			.stack 7;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_3;
+				L1:	aload_0;
+					aload_3;
+					sconst_5;
+					sload_2;
+					aload_3;
+					sconst_5;
+					sload_2;
+					sadd;
+					invokespecial 74;		// tonwallet/ApduDataProtectionHandler.verifyMac([BSS[BS)B
+					sstore 4;
+				L2:	sload 4;
+					ifeq L6;
+				L3:	aload_0;
+					dup;
+					getfield_s 0;		// short tonwallet/ApduDataProtectionHandler.hmacVerificationFailCounter
+					sconst_1;
+					sadd;
+					putfield_s 0;		// short tonwallet/ApduDataProtectionHandler.hmacVerificationFailCounter
+					getfield_s_this 0;		// short tonwallet/ApduDataProtectionHandler.hmacVerificationFailCounter
+					bspush 20;
+					if_scmplt L5;
+				L4:	bspush 71;
+					invokestatic 80;		// org/globalplatform/GPSystem.setCardContentState(B)Z
+					pop;
+					sspush -28924;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L5:	sspush -28925;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+					goto L7;
+				L6:	aload_0;
+					sconst_0;
+					putfield_s 0;		// short tonwallet/ApduDataProtectionHandler.hmacVerificationFailCounter
+				L7:	return;
+		}
+
+		.method private verifySaultAndMacForApduDataChunk(Ljavacard/framework/APDU;S)V {
+			.stack 3;
+			.locals 3;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	sload_2;
+					bspush 32;
+					if_scmplt L2;
+				L1:	sload_2;
+					sspush 223;
+					if_scmple L3;
+				L2:	sspush 20227;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L3:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_3;
+				L4:	sconst_5;
+					sload_2;
+					sadd;
+					bspush 32;
+					ssub;
+					sstore 4;
+				L5:	invokestatic 81;		// tonwallet/SaultHandler.getInstance()Ltonwallet/SaultHandler;
+					aload_3;
+					sload 4;
+					invokevirtual 82;		// compareSault([BS)Z
+					sstore 5;
+				L6:	sload 5;
+					ifne L8;
+				L7:	sspush -28927;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L8:	aload_0;
+					aload_1;
+					sload_2;
+					invokespecial 89;		// tonwallet/ApduDataProtectionHandler.verifyMacForApduDataChunk(Ljavacard/framework/APDU;S)V
+					return;
+		}
+
+		.method public verifyInputApduData(Ljavacard/framework/APDU;S)V 3 {
+			.stack 3;
+			.locals 4;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_3;
+				L1:	aload_3;
+					sconst_4;
+					baload;
+					sspush 255;
+					sand;
+					sstore 4;
+				L2:	aload_1;
+					invokevirtual 90;		// setIncomingAndReceive()S
+					sstore 5;
+				L3:	sload_2;
+					bspush 32;
+					sadd;
+					sstore 6;
+				L4:	sload 4;
+					sload 5;
+					if_scmpne L6;
+				L5:	sload 4;
+					sload 6;
+					if_scmpeq L7;
+				L6:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L7:	aload_0;
+					aload_1;
+					sload_2;
+					invokespecial 91;		// tonwallet/ApduDataProtectionHandler.verifySaultAndMacForApduDataChunk(Ljavacard/framework/APDU;S)V
+					return;
+		}
+
+		.method public verifyInputApduDataContainingKeyChunk(Ljavacard/framework/APDU;)S 4 {
+			.stack 3;
+			.locals 6;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L1:	aload_2;
+					sconst_4;
+					baload;
+					sspush 255;
+					sand;
+					sstore_3;
+				L2:	aload_1;
+					invokevirtual 90;		// setIncomingAndReceive()S
+					sstore 4;
+				L3:	aload_2;
+					sconst_5;
+					baload;
+					sspush 255;
+					sand;
+					sstore 5;
+				L4:	sconst_1;
+					sload 5;
+					sadd;
+					bspush 32;
+					sadd;
+					sstore 6;
+				L5:	sload 6;
+					bspush 32;
+					sadd;
+					sstore 7;
+				L6:	sload_3;
+					sload 4;
+					if_scmpne L10;
+				L7:	sload_3;
+					sload 7;
+					if_scmpne L10;
+				L8:	sload 5;
+					ifle L10;
+				L9:	sload 5;
+					sspush 189;
+					if_scmple L11;
+				L10:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L11:	aload_0;
+					aload_1;
+					sload 6;
+					invokespecial 91;		// tonwallet/ApduDataProtectionHandler.verifySaultAndMacForApduDataChunk(Ljavacard/framework/APDU;S)V
+					sload 5;
+					sreturn;
+		}
+
+		.method public verifyInputApduDataContainingDataForSigning(Ljavacard/framework/APDU;)S 5 {
+			.stack 3;
+			.locals 6;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L1:	aload_2;
+					sconst_4;
+					baload;
+					sspush 255;
+					sand;
+					sstore_3;
+				L2:	aload_1;
+					invokevirtual 90;		// setIncomingAndReceive()S
+					sstore 4;
+				L3:	aload_2;
+					sconst_5;
+					invokestatic 92;		// javacard/framework/Util.getShort([BS)S
+					sstore 5;
+				L4:	sconst_2;
+					sload 5;
+					sadd;
+					bspush 32;
+					sadd;
+					sstore 6;
+				L5:	sload 6;
+					bspush 32;
+					sadd;
+					sstore 7;
+				L6:	sload_3;
+					sload 4;
+					if_scmpne L10;
+				L7:	sload_3;
+					sload 7;
+					if_scmpne L10;
+				L8:	sload 5;
+					ifle L10;
+				L9:	sload 5;
+					sspush 189;
+					if_scmple L11;
+				L10:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L11:	aload_0;
+					aload_1;
+					sload 6;
+					invokespecial 91;		// tonwallet/ApduDataProtectionHandler.verifySaultAndMacForApduDataChunk(Ljavacard/framework/APDU;S)V
+					sload 5;
+					sreturn;
+		}
+
+		.method public verifyInputApduDataContainingDataForSigningAndPath(Ljavacard/framework/APDU;)[B 6 {
+			.stack 3;
+			.locals 8;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L1:	aload_2;
+					sconst_4;
+					baload;
+					sspush 255;
+					sand;
+					sstore_3;
+				L2:	aload_1;
+					invokevirtual 90;		// setIncomingAndReceive()S
+					sstore 4;
+				L3:	aload_2;
+					sconst_5;
+					invokestatic 92;		// javacard/framework/Util.getShort([BS)S
+					sstore 5;
+				L4:	sload 5;
+					ifle L6;
+				L5:	sload 5;
+					sspush 178;
+					if_scmple L7;
+				L6:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L7:	bspush 7;
+					sload 5;
+					sadd;
+					sstore 6;
+				L8:	aload_2;
+					sload 6;
+					baload;
+					sstore 7;
+				L9:	sload 7;
+					ifle L11;
+				L10:	sload 7;
+					bspush 10;
+					if_scmple L12;
+				L11:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L12:	sconst_3;
+					sload 5;
+					sadd;
+					sload 7;
+					sadd;
+					bspush 32;
+					sadd;
+					sstore 8;
+				L13:	sload 8;
+					bspush 32;
+					sadd;
+					sstore 9;
+				L14:	sload_3;
+					sload 4;
+					if_scmpne L16;
+				L15:	sload_3;
+					sload 9;
+					if_scmpeq L17;
+				L16:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L17:	aload_0;
+					aload_1;
+					sload 8;
+					invokespecial 91;		// tonwallet/ApduDataProtectionHandler.verifySaultAndMacForApduDataChunk(Ljavacard/framework/APDU;S)V
+					getfield_a_this 2;		// reference tonwallet/ApduDataProtectionHandler.lensBuf
+					sconst_0;
+					sload 5;
+					invokestatic 93;		// javacard/framework/Util.setShort([BSS)S
+					pop;
+					getfield_a_this 2;		// reference tonwallet/ApduDataProtectionHandler.lensBuf
+					sconst_2;
+					sload 7;
+					bastore;
+					getfield_a_this 2;		// reference tonwallet/ApduDataProtectionHandler.lensBuf
+					areturn;
+		}
+
+	}
+
+	.class public CardAuthenticationHandler 1 extends 0.0 {		// extends java/lang/Object
+
+		.fields {
+			private 3.11 shaMessageDigest 0;		// Ljavacard/security/MessageDigest;
+			private 4.1 cipherDec 1;		// Ljavacardx/crypto/Cipher;
+			private 3.20 aesKey 2;		// Ljavacard/security/AESKey;
+			private short numPasswordTries 3;		// S
+			private boolean isEncryptedPasswordSet 4;		// Z
+			private static final short PASSWORD_SIZE = 128;		// S
+			private static final short MAX_PASSWORD_TRIES = 20;		// S
+			private static final short AES_IV_LEN = 16;		// S
+			private static byte[] encryptedPassword;		// [B
+			private static byte[] decryptedPassword;		// [B
+			private static byte[] aesKeyBytes;		// [B
+			private static byte[] decryptedPasswordHash;		// [B
+			private static ApduDataProtectionHandler apduDataProtectionHandler;		// Ltonwallet/ApduDataProtectionHandler;
+			private static CommonSecretHandler commonSecretHandler;		// Ltonwallet/CommonSecretHandler;
+			private static CardAuthenticationHandler cardAuthenticationHandler;		// Ltonwallet/CardAuthenticationHandler;
+		}
+
+		.publicMethodTable 1 {
+			equals(Ljava/lang/Object;)Z;
+			isEncryptedPasswordSet()Z;
+			setEncryptedPassword(Ljavacard/framework/APDU;)V;
+			getHashOfEncryptedPassword(Ljavacard/framework/APDU;)V;
+			verifyPassword(Ljavacard/framework/APDU;)V;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public static getInstance()Ltonwallet/CardAuthenticationHandler; 0 {
+			.stack 2;
+			.locals 0;
+
+				L0:	getstatic_a 94;		// reference tonwallet/CardAuthenticationHandler.cardAuthenticationHandler
+					ifnonnull L2;
+				L1:	new 95;		// tonwallet/CardAuthenticationHandler
+					dup;
+					invokespecial 96;		// tonwallet/CardAuthenticationHandler.<init>()V
+					putstatic_a 94;		// reference tonwallet/CardAuthenticationHandler.cardAuthenticationHandler
+				L2:	getstatic_a 94;		// reference tonwallet/CardAuthenticationHandler.cardAuthenticationHandler
+					areturn;
+		}
+
+		.method private <init>()V {
+			.stack 4;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 71;		// java/lang/Object.<init>()V
+					aload_0;
+					sconst_0;
+					putfield_s 5;		// short tonwallet/CardAuthenticationHandler.numPasswordTries
+					aload_0;
+					sconst_0;
+					putfield_b 6;		// boolean tonwallet/CardAuthenticationHandler.isEncryptedPasswordSet
+					sspush 128;
+					newarray 11;
+					putstatic_a 99;		// reference tonwallet/CardAuthenticationHandler.encryptedPassword
+					sspush 128;
+					newarray 11;
+					putstatic_a 100;		// reference tonwallet/CardAuthenticationHandler.decryptedPassword
+					bspush 32;
+					newarray 11;
+					putstatic_a 101;		// reference tonwallet/CardAuthenticationHandler.aesKeyBytes
+					bspush 32;
+					newarray 11;
+					putstatic_a 102;		// reference tonwallet/CardAuthenticationHandler.decryptedPasswordHash
+					aload_0;
+					sconst_4;
+					sconst_0;
+					invokestatic 103;		// javacard/security/MessageDigest.getInstance(BZ)Ljavacard/security/MessageDigest;
+					putfield_a 7;		// reference tonwallet/CardAuthenticationHandler.shaMessageDigest
+					aload_0;
+					bspush 13;
+					sconst_0;
+					invokestatic 106;		// javacardx/crypto/Cipher.getInstance(BZ)Ljavacardx/crypto/Cipher;
+					putfield_a 8;		// reference tonwallet/CardAuthenticationHandler.cipherDec
+					aload_0;
+					bspush 15;
+					sspush 128;
+					sconst_0;
+					invokestatic 108;		// javacard/security/KeyBuilder.buildKey(BSZ)Ljavacard/security/Key;
+					checkcast 0 114;		// T_CLASSORINTERFACE javacard/security/AESKey
+					putfield_a 9;		// reference tonwallet/CardAuthenticationHandler.aesKey
+					invokestatic 116;		// tonwallet/ApduDataProtectionHandler.getInstance()Ltonwallet/ApduDataProtectionHandler;
+					putstatic_a 117;		// reference tonwallet/CardAuthenticationHandler.apduDataProtectionHandler
+					invokestatic 118;		// tonwallet/CommonSecretHandler.getInstance()Ltonwallet/CommonSecretHandler;
+					putstatic_a 129;		// reference tonwallet/CardAuthenticationHandler.commonSecretHandler
+					return;
+		}
+
+		.method public isEncryptedPasswordSet()Z 1 {
+			.stack 1;
+			.locals 0;
+
+				L0:	getfield_b_this 6;		// boolean tonwallet/CardAuthenticationHandler.isEncryptedPasswordSet
+					sreturn;
+		}
+
+		.method public setEncryptedPassword(Ljavacard/framework/APDU;)V 2 {
+			.stack 5;
+			.locals 3;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L1:	aload_2;
+					sconst_4;
+					baload;
+					sspush 255;
+					sand;
+					sstore_3;
+				L2:	aload_1;
+					invokevirtual 90;		// setIncomingAndReceive()S
+					sstore 4;
+				L3:	sload_3;
+					sload 4;
+					if_scmpne L5;
+				L4:	sload_3;
+					sspush 128;
+					if_scmpeq L6;
+				L5:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L6:	aload_2;
+					sconst_5;
+					getstatic_a 99;		// reference tonwallet/CardAuthenticationHandler.encryptedPassword
+					sconst_0;
+					sspush 128;
+					invokestatic 130;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+					pop;
+					aload_0;
+					sconst_1;
+					putfield_b 6;		// boolean tonwallet/CardAuthenticationHandler.isEncryptedPasswordSet
+					return;
+		}
+
+		.method public getHashOfEncryptedPassword(Ljavacard/framework/APDU;)V 3 {
+			.stack 6;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L1:	aload_1;
+					invokevirtual 135;		// setOutgoing()S
+					sstore_3;
+				L2:	sload_3;
+					bspush 32;
+					if_scmpeq L4;
+				L3:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L4:	getfield_a_this 7;		// reference tonwallet/CardAuthenticationHandler.shaMessageDigest
+					getstatic_a 99;		// reference tonwallet/CardAuthenticationHandler.encryptedPassword
+					sconst_0;
+					sspush 128;
+					aload_2;
+					sconst_0;
+					invokevirtual 136;		// doFinal([BSS[BS)S
+					pop;
+					aload_1;
+					bspush 32;
+					invokevirtual 137;		// setOutgoingLength(S)V
+					aload_1;
+					sconst_0;
+					bspush 32;
+					invokevirtual 138;		// sendBytes(SS)V
+					return;
+		}
+
+		.method public verifyPassword(Ljavacard/framework/APDU;)V 4 {
+			.stack 6;
+			.locals 5;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L1:	aload_2;
+					sconst_4;
+					baload;
+					sspush 255;
+					sand;
+					sstore_3;
+				L2:	aload_1;
+					invokevirtual 90;		// setIncomingAndReceive()S
+					sstore 4;
+				L3:	sload_3;
+					sload 4;
+					if_scmpne L5;
+				L4:	sload_3;
+					sspush 144;
+					if_scmpeq L6;
+				L5:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L6:	getfield_a_this 7;		// reference tonwallet/CardAuthenticationHandler.shaMessageDigest
+					aload_2;
+					sconst_5;
+					sspush 128;
+					getstatic_a 101;		// reference tonwallet/CardAuthenticationHandler.aesKeyBytes
+					sconst_0;
+					invokevirtual 136;		// doFinal([BSS[BS)S
+					pop;
+					getfield_a_this 9;		// reference tonwallet/CardAuthenticationHandler.aesKey
+					getstatic_a 101;		// reference tonwallet/CardAuthenticationHandler.aesKeyBytes
+					sconst_0;
+					invokeinterface 3 114 4;		// javacard/security/AESKey
+					sspush 133;
+					sstore 5;
+				L7:	getfield_a_this 8;		// reference tonwallet/CardAuthenticationHandler.cipherDec
+					getfield_a_this 9;		// reference tonwallet/CardAuthenticationHandler.aesKey
+					sconst_1;
+					aload_2;
+					sload 5;
+					bspush 16;
+					invokevirtual 139;		// init(Ljavacard/security/Key;B[BSS)V
+					getfield_a_this 8;		// reference tonwallet/CardAuthenticationHandler.cipherDec
+					getstatic_a 99;		// reference tonwallet/CardAuthenticationHandler.encryptedPassword
+					sconst_0;
+					sspush 128;
+					getstatic_a 100;		// reference tonwallet/CardAuthenticationHandler.decryptedPassword
+					sconst_0;
+					invokevirtual 144;		// doFinal([BSS[BS)S
+					pop;
+					getstatic_a 129;		// reference tonwallet/CardAuthenticationHandler.commonSecretHandler
+					getstatic_a 101;		// reference tonwallet/CardAuthenticationHandler.aesKeyBytes
+					aload_2;
+					sload 5;
+					bspush 16;
+					invokevirtual 146;		// decryptCommonSecret([B[BSS)V
+					getstatic_a 100;		// reference tonwallet/CardAuthenticationHandler.decryptedPassword
+					sconst_0;
+					aload_2;
+					sconst_5;
+					sspush 128;
+					invokestatic 73;		// javacard/framework/Util.arrayCompare([BS[BSS)B
+					sstore 6;
+				L8:	sload 6;
+					ifeq L12;
+				L9:	aload_0;
+					dup;
+					getfield_s 5;		// short tonwallet/CardAuthenticationHandler.numPasswordTries
+					sconst_1;
+					sadd;
+					putfield_s 5;		// short tonwallet/CardAuthenticationHandler.numPasswordTries
+					getfield_s_this 5;		// short tonwallet/CardAuthenticationHandler.numPasswordTries
+					bspush 20;
+					if_scmplt L11;
+				L10:	bspush 71;
+					invokestatic 80;		// org/globalplatform/GPSystem.setCardContentState(B)Z
+					pop;
+					sspush 24321;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L11:	sspush 24320;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+					goto L13;
+				L12:	bspush 23;
+					invokestatic 80;		// org/globalplatform/GPSystem.setCardContentState(B)Z
+					pop;
+					getfield_a_this 7;		// reference tonwallet/CardAuthenticationHandler.shaMessageDigest
+					getstatic_a 100;		// reference tonwallet/CardAuthenticationHandler.decryptedPassword
+					sconst_0;
+					sspush 128;
+					getstatic_a 102;		// reference tonwallet/CardAuthenticationHandler.decryptedPasswordHash
+					sconst_0;
+					invokevirtual 136;		// doFinal([BSS[BS)S
+					pop;
+					getstatic_a 117;		// reference tonwallet/CardAuthenticationHandler.apduDataProtectionHandler
+					getstatic_a 129;		// reference tonwallet/CardAuthenticationHandler.commonSecretHandler
+					invokevirtual 152;		// getCommonSecret()[B
+					getstatic_a 102;		// reference tonwallet/CardAuthenticationHandler.decryptedPasswordHash
+					invokevirtual 153;		// generateHmacKey([B[B)V
+				L13:	return;
+		}
+
+	}
+
+	.class public CommonHandler 2 extends 0.0 {		// extends java/lang/Object
+
+		.fields {
+			private static SerialNumberHandler serialNumberHandler;		// Ltonwallet/SerialNumberHandler;
+			private static CommonSecretHandler commonSecretHandler;		// Ltonwallet/CommonSecretHandler;
+			private static CardAuthenticationHandler cardAuthenticationHandler;		// Ltonwallet/CardAuthenticationHandler;
+			private static CommonHandler commonHandler;		// Ltonwallet/CommonHandler;
+		}
+
+		.publicMethodTable 1 {
+			equals(Ljava/lang/Object;)Z;
+			finishPers(Ljavacard/framework/APDU;)V;
+			getAppInfo(Ljavacard/framework/APDU;)V;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method private <init>()V {
+			.stack 1;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 71;		// java/lang/Object.<init>()V
+					invokestatic 157;		// tonwallet/SerialNumberHandler.getInstance()Ltonwallet/SerialNumberHandler;
+					putstatic_a 158;		// reference tonwallet/CommonHandler.serialNumberHandler
+					invokestatic 118;		// tonwallet/CommonSecretHandler.getInstance()Ltonwallet/CommonSecretHandler;
+					putstatic_a 160;		// reference tonwallet/CommonHandler.commonSecretHandler
+					invokestatic 162;		// tonwallet/CardAuthenticationHandler.getInstance()Ltonwallet/CardAuthenticationHandler;
+					putstatic_a 172;		// reference tonwallet/CommonHandler.cardAuthenticationHandler
+					return;
+		}
+
+		.method public static getInstance()Ltonwallet/CommonHandler; 0 {
+			.stack 2;
+			.locals 0;
+
+				L0:	getstatic_a 174;		// reference tonwallet/CommonHandler.commonHandler
+					ifnonnull L2;
+				L1:	new 175;		// tonwallet/CommonHandler
+					dup;
+					invokespecial 176;		// tonwallet/CommonHandler.<init>()V
+					putstatic_a 174;		// reference tonwallet/CommonHandler.commonHandler
+				L2:	getstatic_a 174;		// reference tonwallet/CommonHandler.commonHandler
+					areturn;
+		}
+
+		.method public finishPers(Ljavacard/framework/APDU;)V 1 {
+			.stack 1;
+			.locals 0;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	getstatic_a 160;		// reference tonwallet/CommonHandler.commonSecretHandler
+					invokevirtual 178;		// isEncryptedCommonSecretSet()Z
+					ifeq L3;
+				L1:	getstatic_a 172;		// reference tonwallet/CommonHandler.cardAuthenticationHandler
+					invokevirtual 179;		// isEncryptedPasswordSet()Z
+					ifeq L3;
+				L2:	getstatic_a 158;		// reference tonwallet/CommonHandler.serialNumberHandler
+					invokevirtual 181;		// isSerialNumberSet()Z
+					ifne L4;
+				L3:	sspush 20225;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L4:	bspush 39;
+					invokestatic 80;		// org/globalplatform/GPSystem.setCardContentState(B)Z
+					pop;
+					return;
+		}
+
+		.method public getAppInfo(Ljavacard/framework/APDU;)V 2 {
+			.stack 3;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L1:	aload_2;
+					sconst_0;
+					invokestatic 182;		// org/globalplatform/GPSystem.getCardContentState()B
+					bastore;
+					aload_1;
+					invokevirtual 135;		// setOutgoing()S
+					sstore_3;
+				L2:	sload_3;
+					sconst_1;
+					if_scmpeq L4;
+				L3:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L4:	aload_1;
+					sconst_1;
+					invokevirtual 137;		// setOutgoingLength(S)V
+					aload_1;
+					sconst_0;
+					sconst_1;
+					invokevirtual 138;		// sendBytes(SS)V
+					return;
+		}
+
+	}
+
+	.class public CommonSecretHandler 3 extends 0.0 {		// extends java/lang/Object
+
+		.fields {
+			private byte[] decryptedCommonSecret 0;		// [B
+			private byte[] encryptedCommonSecret 1;		// [B
+			private 3.11 md 2;		// Ljavacard/security/MessageDigest;
+			private 4.1 cipherDec 3;		// Ljavacardx/crypto/Cipher;
+			private 3.20 aesKey 4;		// Ljavacard/security/AESKey;
+			private boolean isEncryptedCommonSecretSet 5;		// Z
+			private static CommonSecretHandler commonSecretHandler;		// Ltonwallet/CommonSecretHandler;
+		}
+
+		.publicMethodTable 1 {
+			equals(Ljava/lang/Object;)Z;
+			isEncryptedCommonSecretSet()Z;
+			setEncryptedCommonSecret(Ljavacard/framework/APDU;)V;
+			decryptCommonSecret([B[BSS)V;
+			getEncryptedCommonSecret()[B;
+			getCommonSecret()[B;
+			getHashOfEncryptedCommonSecret(Ljavacard/framework/APDU;)V;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public static getInstance()Ltonwallet/CommonSecretHandler; 0 {
+			.stack 2;
+			.locals 0;
+
+				L0:	getstatic_a 67;		// reference tonwallet/CommonSecretHandler.commonSecretHandler
+					ifnonnull L2;
+				L1:	new 68;		// tonwallet/CommonSecretHandler
+					dup;
+					invokespecial 69;		// tonwallet/CommonSecretHandler.<init>()V
+					putstatic_a 67;		// reference tonwallet/CommonSecretHandler.commonSecretHandler
+				L2:	getstatic_a 67;		// reference tonwallet/CommonSecretHandler.commonSecretHandler
+					areturn;
+		}
+
+		.method private <init>()V {
+			.stack 4;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 71;		// java/lang/Object.<init>()V
+					aload_0;
+					sconst_0;
+					putfield_b 10;		// boolean tonwallet/CommonSecretHandler.isEncryptedCommonSecretSet
+					aload_0;
+					bspush 32;
+					newarray 11;
+					putfield_a 11;		// reference tonwallet/CommonSecretHandler.encryptedCommonSecret
+					aload_0;
+					bspush 32;
+					newarray 11;
+					putfield_a 12;		// reference tonwallet/CommonSecretHandler.decryptedCommonSecret
+					aload_0;
+					sconst_4;
+					sconst_0;
+					invokestatic 103;		// javacard/security/MessageDigest.getInstance(BZ)Ljavacard/security/MessageDigest;
+					putfield_a 13;		// reference tonwallet/CommonSecretHandler.md
+					aload_0;
+					bspush 13;
+					sconst_0;
+					invokestatic 106;		// javacardx/crypto/Cipher.getInstance(BZ)Ljavacardx/crypto/Cipher;
+					putfield_a 14;		// reference tonwallet/CommonSecretHandler.cipherDec
+					aload_0;
+					bspush 15;
+					sspush 128;
+					sconst_0;
+					invokestatic 108;		// javacard/security/KeyBuilder.buildKey(BSZ)Ljavacard/security/Key;
+					checkcast 0 114;		// T_CLASSORINTERFACE javacard/security/AESKey
+					putfield_a 15;		// reference tonwallet/CommonSecretHandler.aesKey
+					return;
+		}
+
+		.method public isEncryptedCommonSecretSet()Z 1 {
+			.stack 1;
+			.locals 0;
+
+				L0:	getfield_b_this 10;		// boolean tonwallet/CommonSecretHandler.isEncryptedCommonSecretSet
+					sreturn;
+		}
+
+		.method public setEncryptedCommonSecret(Ljavacard/framework/APDU;)V 2 {
+			.stack 5;
+			.locals 3;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L1:	aload_2;
+					sconst_4;
+					baload;
+					sspush 255;
+					sand;
+					sstore_3;
+				L2:	aload_1;
+					invokevirtual 90;		// setIncomingAndReceive()S
+					sstore 4;
+				L3:	sload_3;
+					sload 4;
+					if_scmpne L5;
+				L4:	sload_3;
+					bspush 32;
+					if_scmpeq L6;
+				L5:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L6:	aload_2;
+					sconst_5;
+					getfield_a_this 11;		// reference tonwallet/CommonSecretHandler.encryptedCommonSecret
+					sconst_0;
+					bspush 32;
+					invokestatic 130;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+					pop;
+					aload_0;
+					sconst_1;
+					putfield_b 10;		// boolean tonwallet/CommonSecretHandler.isEncryptedCommonSecretSet
+					return;
+		}
+
+		.method public decryptCommonSecret([B[BSS)V 3 {
+			.stack 6;
+			.locals 0;
+
+				L0:	getfield_a_this 15;		// reference tonwallet/CommonSecretHandler.aesKey
+					aload_1;
+					sconst_0;
+					invokeinterface 3 114 4;		// javacard/security/AESKey
+					getfield_a_this 14;		// reference tonwallet/CommonSecretHandler.cipherDec
+					getfield_a_this 15;		// reference tonwallet/CommonSecretHandler.aesKey
+					sconst_1;
+					aload_2;
+					sload_3;
+					sload 4;
+					invokevirtual 139;		// init(Ljavacard/security/Key;B[BSS)V
+					getfield_a_this 14;		// reference tonwallet/CommonSecretHandler.cipherDec
+					getfield_a_this 11;		// reference tonwallet/CommonSecretHandler.encryptedCommonSecret
+					sconst_0;
+					bspush 32;
+					getfield_a_this 12;		// reference tonwallet/CommonSecretHandler.decryptedCommonSecret
+					sconst_0;
+					invokevirtual 144;		// doFinal([BSS[BS)S
+					pop;
+					return;
+		}
+
+		.method public getEncryptedCommonSecret()[B 4 {
+			.stack 1;
+			.locals 0;
+
+				L0:	getfield_a_this 11;		// reference tonwallet/CommonSecretHandler.encryptedCommonSecret
+					areturn;
+		}
+
+		.method public getCommonSecret()[B 5 {
+			.stack 1;
+			.locals 0;
+
+				L0:	getfield_a_this 12;		// reference tonwallet/CommonSecretHandler.decryptedCommonSecret
+					areturn;
+		}
+
+		.method public getHashOfEncryptedCommonSecret(Ljavacard/framework/APDU;)V 6 {
+			.stack 6;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L1:	aload_1;
+					invokevirtual 135;		// setOutgoing()S
+					sstore_3;
+				L2:	sload_3;
+					bspush 32;
+					if_scmpeq L4;
+				L3:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L4:	getfield_a_this 13;		// reference tonwallet/CommonSecretHandler.md
+					getfield_a_this 11;		// reference tonwallet/CommonSecretHandler.encryptedCommonSecret
+					sconst_0;
+					bspush 32;
+					aload_2;
+					sconst_0;
+					invokevirtual 136;		// doFinal([BSS[BS)S
+					pop;
+					aload_1;
+					bspush 32;
+					invokevirtual 137;		// setOutgoingLength(S)V
+					aload_1;
+					sconst_0;
+					bspush 32;
+					invokevirtual 138;		// sendBytes(SS)V
+					return;
+		}
+
+	}
+
+	.class public Constants 4 extends 0.0 {		// extends java/lang/Object
+
+		.fields {
+			public static final byte APP_INSTALLED = 7;		// B
+			public static final byte APP_WAITE_AUTHORIZATION_MODE = 39;		// B
+			public static final byte APP_PERSONALIZED = 23;		// B
+			public static final byte APP_DELETE_KEY_FROM_KEYCHAIN_MODE = 55;		// B
+			public static final byte APP_BLOCKED_MODE = 71;		// B
+			public static final short COMMON_SECRET_SIZE = 32;		// S
+			public static final short SHA_HASH_SIZE = 32;		// S
+			public static final short HMAC_SIG_SIZE = 32;		// S
+			public static final short SAULT_SIZE = 32;		// S
+			public static final short MAX_IND_SIZE = 10;		// S
+			public static final short SERIAL_NUMBER_SIZE = 24;		// S
+			public static final short DATA_CHUNK_MAX_SIZE = 189;		// S
+			public static final short DATA_FOR_SIGNING_MAX_SIZE = 189;		// S
+			public static final short DATA_FOR_SIGNING_MAX_SIZE_FOR_CASE_WITH_PATH = 178;		// S
+			public static final byte MAX_PIN_TRIES_NUM = 10;		// B
+		}
+
+		.publicMethodTable 1 {
+			equals(Ljava/lang/Object;)Z;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public <init>()V 0 {
+			.stack 1;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 71;		// java/lang/Object.<init>()V
+					return;
+		}
+
+	}
+
+	.class public ErrorCodes 5 extends 0.0 {		// extends java/lang/Object
+
+		.fields {
+			public static final short SW_INTERNAL_BUFFER_IS_NULL_OR_TOO_SMALL = 20224;		// S
+			public static final short SW_PERSONALIZATION_NOT_FINISHED = 20225;		// S
+			public static final short SW_INCORRECT_OFFSET = 20226;		// S
+			public static final short SW_INCORRECT_PAYLOAD = 20227;		// S
+			public static final short SW_INCORRECT_PASSWORD_FOR_CARD_AUTHENICATION = 24320;		// S
+			public static final short SW_INCORRECT_PASSWORD_CARD_IS_BLOCKED = 24321;		// S
+			public static final short SW_SET_COIN_TYPE_FAILED = 28417;		// S
+			public static final short SW_SET_CURVE_FAILED = 28418;		// S
+			public static final short SW_GET_COIN_PUB_DATA_FAILED = 28419;		// S
+			public static final short SW_SIGN_DATA_FAILED = 28420;		// S
+			public static final short SW_INCORRECT_PIN = 28423;		// S
+			public static final short SW_PIN_TRIES_EXPIRED = 28424;		// S
+			public static final short SW_RECOVERY_DATA_TOO_LONG = 28425;		// S
+			public static final short SW_INCORRECT_START_POS_OR_LE = 28426;		// S
+			public static final short SW_INTEGRITY_OF_RECOVERY_DATA_CORRUPTED = 28427;		// S
+			public static final short SW_RECOVERY_DATA_ALREADY_EXISTS = 28428;		// S
+			public static final short SW_RECOVERY_DATA_IS_NOT_SET = 28429;		// S
+			public static final short SW_INCORRECT_KEY_INDEX = 32512;		// S
+			public static final short SW_INCORRECT_KEY_CHUNK_START_OR_LEN = 32513;		// S
+			public static final short SW_INCORRECT_KEY_CHUNK_LEN = 32514;		// S
+			public static final short SW_NOT_ENOUGH_SPACE = 32515;		// S
+			public static final short SW_KEY_SIZE_UNKNOWN = 32516;		// S
+			public static final short SW_KEY_LEN_INCORRECT = 32517;		// S
+			public static final short SW_HMAC_EXISTS = 32518;		// S
+			public static final short SW_INCORRECT_KEY_INDEX_TO_CHANGE = 32519;		// S
+			public static final short SW_MAX_KEYS_NUMBER_EXCEEDED = 32520;		// S
+			public static final short SW_DELETE_KEY_CHUNK_IS_NOT_FINISHED = 32521;		// S
+			public static final short SW_INCORRECT_SAULT = -28927;		// S
+			public static final short SW_DATA_INTEGRITY_CORRUPTED = -28926;		// S
+			public static final short SW_INCORRECT_APDU_HMAC = -28925;		// S
+			public static final short SW_HMAC_VERIFICATION_TRIES_EXPIRED = -28924;		// S
+			public static final short SW_SERIAL_NUMBER_IS_NOT_SET = -24575;		// S
+			public static final short SW_SERIAL_NUMBER_INCORRECT_FORMAT = -24574;		// S
+		}
+
+		.publicMethodTable 1 {
+			equals(Ljava/lang/Object;)Z;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public <init>()V 0 {
+			.stack 1;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 71;		// java/lang/Object.<init>()V
+					return;
+		}
+
+	}
+
+	.class public HmacSha256Impl 6 extends 0.0 {		// extends java/lang/Object
+
+		.fields {
+			private byte[] tmpBuffer 0;		// [B
+			private byte[] ipadK 1;		// [B
+			private byte[] opadK 2;		// [B
+			private 3.11 md 3;		// Ljavacard/security/MessageDigest;
+			public static final short LEN_HMAC_BLOCK = 64;		// S
+			public static final short KEY_SIZE = 32;		// S
+			private static final byte ipad = 54;		// B
+			private static final byte opad = 92;		// B
+			private static HmacSha256Impl hmacSha256Impl;		// Ltonwallet/HmacSha256Impl;
+		}
+
+		.publicMethodTable 1 {
+			equals(Ljava/lang/Object;)Z;
+			sign([BS[BSS[BS)S;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public static getInstance()Ltonwallet/HmacSha256Impl; 0 {
+			.stack 2;
+			.locals 0;
+
+				L0:	getstatic_a 76;		// reference tonwallet/HmacSha256Impl.hmacSha256Impl
+					ifnonnull L2;
+				L1:	new 77;		// tonwallet/HmacSha256Impl
+					dup;
+					invokespecial 78;		// tonwallet/HmacSha256Impl.<init>()V
+					putstatic_a 76;		// reference tonwallet/HmacSha256Impl.hmacSha256Impl
+				L2:	getstatic_a 76;		// reference tonwallet/HmacSha256Impl.hmacSha256Impl
+					areturn;
+		}
+
+		.method private <init>()V {
+			.stack 3;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 71;		// java/lang/Object.<init>()V
+				L1:	aload_0;
+					bspush 64;
+					sconst_2;
+					invokestatic 98;		// javacard/framework/JCSystem.makeTransientByteArray(SB)[B
+					putfield_a 16;		// reference tonwallet/HmacSha256Impl.tmpBuffer
+				L2:	goto L4;
+				L3:	pop;
+					aload_0;
+					bspush 64;
+					newarray 11;
+					putfield_a 16;		// reference tonwallet/HmacSha256Impl.tmpBuffer
+				L4:	aload_0;
+					bspush 64;
+					sconst_2;
+					invokestatic 98;		// javacard/framework/JCSystem.makeTransientByteArray(SB)[B
+					putfield_a 17;		// reference tonwallet/HmacSha256Impl.ipadK
+				L5:	goto L7;
+				L6:	pop;
+					aload_0;
+					bspush 64;
+					newarray 11;
+					putfield_a 17;		// reference tonwallet/HmacSha256Impl.ipadK
+				L7:	aload_0;
+					bspush 64;
+					sconst_2;
+					invokestatic 98;		// javacard/framework/JCSystem.makeTransientByteArray(SB)[B
+					putfield_a 18;		// reference tonwallet/HmacSha256Impl.opadK
+				L8:	goto L10;
+				L9:	pop;
+					aload_0;
+					bspush 64;
+					newarray 11;
+					putfield_a 18;		// reference tonwallet/HmacSha256Impl.opadK
+				L10:	aload_0;
+					sconst_4;
+					sconst_0;
+					invokestatic 103;		// javacard/security/MessageDigest.getInstance(BZ)Ljavacard/security/MessageDigest;
+					putfield_a 19;		// reference tonwallet/HmacSha256Impl.md
+					return;
+			.exceptionTable {
+				// start_block end_block handler_block catch_type_index
+				L1 L2 L3 115;
+				L4 L5 L6 115;
+				L7 L8 L9 115;
+			}
+		}
+
+		.method public sign([BS[BSS[BS)S 1 {
+			.stack 6;
+			.locals 1;
+
+				L0:	sload 5;
+					ifgt L2;
+				L1:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	sload_2;
+					iflt L5;
+				L3:	sload 7;
+					iflt L5;
+				L4:	sload 4;
+					ifge L6;
+				L5:	sspush 20226;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L6:	aload_1;
+					ifnull L12;
+				L7:	aload_1;
+					arraylength;
+					sload_2;
+					ssub;
+					bspush 32;
+					if_scmplt L12;
+				L8:	aload 6;
+					ifnull L12;
+				L9:	aload 6;
+					arraylength;
+					sload 7;
+					ssub;
+					bspush 32;
+					if_scmplt L12;
+				L10:	aload_3;
+					ifnull L12;
+				L11:	aload_3;
+					arraylength;
+					sload 4;
+					ssub;
+					sload 5;
+					if_scmpge L13;
+				L12:	sspush 20224;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L13:	aload_1;
+					sload_2;
+					getfield_a_this 16;		// reference tonwallet/HmacSha256Impl.tmpBuffer
+					sconst_0;
+					bspush 32;
+					invokestatic 130;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+					pop;
+					sconst_0;
+					sstore 8;
+				L14:	goto L19;
+				L15:	sload 8;
+					bspush 32;
+					if_scmplt L17;
+				L16:	getfield_a_this 17;		// reference tonwallet/HmacSha256Impl.ipadK
+					sload 8;
+					bspush 54;
+					bastore;
+					getfield_a_this 18;		// reference tonwallet/HmacSha256Impl.opadK
+					sload 8;
+					bspush 92;
+					bastore;
+					goto L18;
+				L17:	getfield_a_this 17;		// reference tonwallet/HmacSha256Impl.ipadK
+					sload 8;
+					getfield_a_this 16;		// reference tonwallet/HmacSha256Impl.tmpBuffer
+					sload 8;
+					baload;
+					bspush 54;
+					sxor;
+					bastore;
+					getfield_a_this 18;		// reference tonwallet/HmacSha256Impl.opadK
+					sload 8;
+					getfield_a_this 16;		// reference tonwallet/HmacSha256Impl.tmpBuffer
+					sload 8;
+					baload;
+					bspush 92;
+					sxor;
+					bastore;
+				L18:	sinc 8 1;
+				L19:	sload 8;
+					bspush 64;
+					if_scmplt L15;
+				L20:	getfield_a_this 16;		// reference tonwallet/HmacSha256Impl.tmpBuffer
+					sconst_0;
+					bspush 32;
+					sconst_0;
+					invokestatic 83;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+					pop;
+					getfield_a_this 19;		// reference tonwallet/HmacSha256Impl.md
+					invokevirtual 84;		// reset()V
+					getfield_a_this 19;		// reference tonwallet/HmacSha256Impl.md
+					getfield_a_this 17;		// reference tonwallet/HmacSha256Impl.ipadK
+					sconst_0;
+					bspush 64;
+					invokevirtual 85;		// update([BSS)V
+					getfield_a_this 19;		// reference tonwallet/HmacSha256Impl.md
+					aload_3;
+					sload 4;
+					sload 5;
+					getfield_a_this 16;		// reference tonwallet/HmacSha256Impl.tmpBuffer
+					sconst_0;
+					invokevirtual 136;		// doFinal([BSS[BS)S
+					pop;
+					getfield_a_this 19;		// reference tonwallet/HmacSha256Impl.md
+					invokevirtual 84;		// reset()V
+					getfield_a_this 19;		// reference tonwallet/HmacSha256Impl.md
+					getfield_a_this 18;		// reference tonwallet/HmacSha256Impl.opadK
+					sconst_0;
+					bspush 64;
+					invokevirtual 85;		// update([BSS)V
+					getfield_a_this 19;		// reference tonwallet/HmacSha256Impl.md
+					getfield_a_this 16;		// reference tonwallet/HmacSha256Impl.tmpBuffer
+					sconst_0;
+					bspush 32;
+					aload 6;
+					sload 7;
+					invokevirtual 136;		// doFinal([BSS[BS)S
+					sstore 8;
+				L21:	getfield_a_this 19;		// reference tonwallet/HmacSha256Impl.md
+					invokevirtual 84;		// reset()V
+					getfield_a_this 16;		// reference tonwallet/HmacSha256Impl.tmpBuffer
+					sconst_0;
+					bspush 32;
+					sconst_0;
+					invokestatic 83;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+					pop;
+					sload 8;
+					sreturn;
+		}
+
+	}
+
+	.class public KeyChain 7 extends 0.0 {		// extends java/lang/Object
+
+		.fields {
+			private short[] keyLens 0;		// [S
+			private short[] keyOffsets 1;		// [S
+			private byte[] keyMacs 2;		// [B
+			private byte[] keyStore 3;		// [B
+			private byte[] keyTmpBuffer 4;		// [B
+			private ApduDataProtectionHandler apduDataProtectionHandler 5;		// Ltonwallet/ApduDataProtectionHandler;
+			private short numberOfStoredKeys 6;		// S
+			private short newKeySize 7;		// S
+			private short totalIncomingBytesOfNewKey 8;		// S
+			private short indOfKeyToChange 9;		// S
+			private short payloadLen 10;		// S
+			private short indOfKeyToDelete 11;		// S
+			private short keyOffsetToDelete 12;		// S
+			private short keyLenToDelete 13;		// S
+			private short offsetOfNextKey 14;		// S
+			private short totalLen 15;		// S
+			private short deleteKeyChunkCounter 16;		// S
+			private short deleteKeyChunkNumOfPackets 17;		// S
+			private short tailLenForDeleteKeyChunk 18;		// S
+			private short deleteKeyChunkIsDone 19;		// S
+			private short deleteKeyRecordCounter 20;		// S
+			private short tailLenForDeleteKeyRecord 21;		// S
+			private short deleteKeyRecordNumOfPackets 22;		// S
+			private short deleteKeyRecordIsDone 23;		// S
+			public static final short KEY_CHAIN_SIZE = 32767;		// S
+			public static final short KEY_RECORDS_SIZE = 1023;		// S
+			public static final short MAX_KEY_SIZE = 8192;		// S
+			public static final byte START_OF_TRANSMISSION = 0;		// B
+			public static final byte END_OF_TRANSMISSION = 2;		// B
+			public static final short PACKET_SIZE_FOR_DELETE_KEY_CHUNK = 128;		// S
+			public static final short PACKET_SIZE_FOR_DELETE_KEY_RECORD = 12;		// S
+			private static KeyChain keyChain;		// Ltonwallet/KeyChain;
+		}
+
+		.publicMethodTable 1 {
+			equals(Ljava/lang/Object;)Z;
+			reset(Ljavacard/framework/APDU;)V;
+			getFreeStorageSize(Ljavacard/framework/APDU;)V;
+			getOccupiedStorageSize(Ljavacard/framework/APDU;)V;
+			getHmac(Ljavacard/framework/APDU;)V;
+			checkKeyHmacConsistency(Ljavacard/framework/APDU;)V;
+			getKeyIndexInStorageAndLen(Ljavacard/framework/APDU;)V;
+			getKeyChunk(Ljavacard/framework/APDU;)V;
+			initiateDeleteOfKey(Ljavacard/framework/APDU;)V;
+			getDeleteKeyChunkCounter(Ljavacard/framework/APDU;)V;
+			getDeleteKeyChunkNumOfPackets(Ljavacard/framework/APDU;)V;
+			getDeleteKeyRecordCounter(Ljavacard/framework/APDU;)V;
+			getDeleteKeyRecordNumOfPackets(Ljavacard/framework/APDU;)V;
+			deleteKeyChunk(Ljavacard/framework/APDU;)V;
+			deleteKeyRecord(Ljavacard/framework/APDU;)V;
+			getNumberOfKeys(Ljavacard/framework/APDU;)V;
+			checkAvailabilityOfStorageFreeVolumeForNewKey(Ljavacard/framework/APDU;)V;
+			addKeyChunk(Ljavacard/framework/APDU;)V;
+			initiateChangeOfKey(Ljavacard/framework/APDU;)V;
+			changeKeyChunk(Ljavacard/framework/APDU;)V;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public static getInstance()Ltonwallet/KeyChain; 0 {
+			.stack 2;
+			.locals 0;
+
+				L0:	getstatic_a 86;		// reference tonwallet/KeyChain.keyChain
+					ifnonnull L2;
+				L1:	new 87;		// tonwallet/KeyChain
+					dup;
+					invokespecial 88;		// tonwallet/KeyChain.<init>()V
+					putstatic_a 86;		// reference tonwallet/KeyChain.keyChain
+				L2:	getstatic_a 86;		// reference tonwallet/KeyChain.keyChain
+					areturn;
+		}
+
+		.method private <init>()V {
+			.stack 2;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 71;		// java/lang/Object.<init>()V
+					aload_0;
+					sconst_0;
+					putfield_s 20;		// short tonwallet/KeyChain.deleteKeyChunkCounter
+					aload_0;
+					sconst_0;
+					putfield_s 21;		// short tonwallet/KeyChain.deleteKeyChunkNumOfPackets
+					aload_0;
+					sconst_0;
+					putfield_s 22;		// short tonwallet/KeyChain.tailLenForDeleteKeyChunk
+					aload_0;
+					sconst_0;
+					putfield_s 23;		// short tonwallet/KeyChain.deleteKeyChunkIsDone
+					aload_0;
+					sconst_0;
+					putfield_s 24;		// short tonwallet/KeyChain.deleteKeyRecordCounter
+					aload_0;
+					sconst_0;
+					putfield_s 25;		// short tonwallet/KeyChain.tailLenForDeleteKeyRecord
+					aload_0;
+					sconst_0;
+					putfield_s 26;		// short tonwallet/KeyChain.deleteKeyRecordNumOfPackets
+					aload_0;
+					sconst_0;
+					putfield_s 27;		// short tonwallet/KeyChain.deleteKeyRecordIsDone
+					aload_0;
+					sspush 32767;
+					newarray 11;
+					putfield_a 28;		// reference tonwallet/KeyChain.keyStore
+					aload_0;
+					sspush 1023;
+					newarray 12;
+					putfield_a 29;		// reference tonwallet/KeyChain.keyLens
+					aload_0;
+					sspush 1023;
+					newarray 12;
+					putfield_a 30;		// reference tonwallet/KeyChain.keyOffsets
+					aload_0;
+					sspush 32736;
+					newarray 11;
+					putfield_a 31;		// reference tonwallet/KeyChain.keyMacs
+					aload_0;
+					sspush 8192;
+					newarray 11;
+					putfield_a 32;		// reference tonwallet/KeyChain.keyTmpBuffer
+					aload_0;
+					invokestatic 116;		// tonwallet/ApduDataProtectionHandler.getInstance()Ltonwallet/ApduDataProtectionHandler;
+					putfield_a 33;		// reference tonwallet/KeyChain.apduDataProtectionHandler
+					return;
+		}
+
+		.method private findKeyRecordIndex([BS)S {
+			.stack 5;
+			.locals 2;
+
+				L0:	sload_2;
+					ifge L2;
+				L1:	sspush 20226;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	aload_1;
+					ifnull L4;
+				L3:	aload_1;
+					arraylength;
+					sload_2;
+					ssub;
+					bspush 32;
+					if_scmpge L5;
+				L4:	sspush 20224;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L5:	sconst_0;
+					sstore_3;
+				L6:	goto L11;
+				L7:	getfield_a_this 31;		// reference tonwallet/KeyChain.keyMacs
+					sload_3;
+					bspush 32;
+					smul;
+					aload_1;
+					sload_2;
+					bspush 32;
+					invokestatic 73;		// javacard/framework/Util.arrayCompare([BS[BSS)B
+					sstore 4;
+				L8:	sload 4;
+					ifne L10;
+				L9:	sload_3;
+					sreturn;
+				L10:	sinc 3 1;
+				L11:	sload_3;
+					getfield_s_this 34;		// short tonwallet/KeyChain.numberOfStoredKeys
+					if_scmplt L7;
+				L12:	sconst_m1;
+					sreturn;
+		}
+
+		.method private getOccupiedStorageSize()S {
+			.stack 3;
+			.locals 2;
+
+				L0:	sconst_0;
+					sstore_1;
+				L1:	sconst_0;
+					sstore_2;
+				L2:	goto L4;
+				L3:	sload_1;
+					getfield_a_this 29;		// reference tonwallet/KeyChain.keyLens
+					sload_2;
+					saload;
+					sadd;
+					sstore_1;
+					sinc 2 1;
+				L4:	sload_2;
+					getfield_s_this 34;		// short tonwallet/KeyChain.numberOfStoredKeys
+					if_scmplt L3;
+				L5:	sload_1;
+					sreturn;
+		}
+
+		.method public reset(Ljavacard/framework/APDU;)V 1 {
+			.stack 4;
+			.locals 1;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_0;
+					bspush 32;
+					putfield_s 35;		// short tonwallet/KeyChain.payloadLen
+					getfield_a_this 33;		// reference tonwallet/KeyChain.apduDataProtectionHandler
+					aload_1;
+					getfield_s_this 35;		// short tonwallet/KeyChain.payloadLen
+					invokevirtual 105;		// verifyInputApduData(Ljavacard/framework/APDU;S)V
+					aload_0;
+					sconst_0;
+					putfield_s 34;		// short tonwallet/KeyChain.numberOfStoredKeys
+					aload_0;
+					sconst_0;
+					putfield_s 36;		// short tonwallet/KeyChain.newKeySize
+					aload_0;
+					sconst_0;
+					putfield_s 37;		// short tonwallet/KeyChain.totalIncomingBytesOfNewKey
+					aload_0;
+					sconst_0;
+					putfield_s 23;		// short tonwallet/KeyChain.deleteKeyChunkIsDone
+					aload_0;
+					sconst_0;
+					putfield_s 27;		// short tonwallet/KeyChain.deleteKeyRecordIsDone
+					aload_0;
+					sconst_0;
+					putfield_s 21;		// short tonwallet/KeyChain.deleteKeyChunkNumOfPackets
+					aload_0;
+					sconst_0;
+					putfield_s 26;		// short tonwallet/KeyChain.deleteKeyRecordNumOfPackets
+					aload_0;
+					sconst_0;
+					putfield_s 20;		// short tonwallet/KeyChain.deleteKeyChunkCounter
+					aload_0;
+					sconst_0;
+					putfield_s 24;		// short tonwallet/KeyChain.deleteKeyRecordCounter
+					aload_0;
+					sconst_0;
+					putfield_s 22;		// short tonwallet/KeyChain.tailLenForDeleteKeyChunk
+					aload_0;
+					sconst_0;
+					putfield_s 25;		// short tonwallet/KeyChain.tailLenForDeleteKeyRecord
+					aload_0;
+					sconst_m1;
+					putfield_s 38;		// short tonwallet/KeyChain.indOfKeyToChange
+					sconst_0;
+					sstore_2;
+				L1:	goto L3;
+				L2:	aload_0;
+					sload_2;
+					invokespecial 109;		// tonwallet/KeyChain.resetKeyOffsetAndlen(S)V
+					sinc 2 1;
+				L3:	sload_2;
+					sspush 1023;
+					if_scmplt L2;
+				L4:	getfield_a_this 28;		// reference tonwallet/KeyChain.keyStore
+					sconst_0;
+					getfield_a_this 28;		// reference tonwallet/KeyChain.keyStore
+					arraylength;
+					sconst_0;
+					invokestatic 83;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+					pop;
+					getfield_a_this 32;		// reference tonwallet/KeyChain.keyTmpBuffer
+					sconst_0;
+					getfield_a_this 32;		// reference tonwallet/KeyChain.keyTmpBuffer
+					arraylength;
+					sconst_0;
+					invokestatic 83;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+					pop;
+					getfield_a_this 31;		// reference tonwallet/KeyChain.keyMacs
+					sconst_0;
+					getfield_a_this 31;		// reference tonwallet/KeyChain.keyMacs
+					arraylength;
+					sconst_0;
+					invokestatic 83;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+					pop;
+					bspush 23;
+					invokestatic 80;		// org/globalplatform/GPSystem.setCardContentState(B)Z
+					pop;
+					return;
+		}
+
+		.method public getFreeStorageSize(Ljavacard/framework/APDU;)V 2 {
+			.stack 4;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L1:	aload_0;
+					bspush 32;
+					putfield_s 35;		// short tonwallet/KeyChain.payloadLen
+					getfield_a_this 33;		// reference tonwallet/KeyChain.apduDataProtectionHandler
+					aload_1;
+					getfield_s_this 35;		// short tonwallet/KeyChain.payloadLen
+					invokevirtual 105;		// verifyInputApduData(Ljavacard/framework/APDU;S)V
+					aload_1;
+					invokevirtual 135;		// setOutgoing()S
+					sstore_3;
+				L2:	sload_3;
+					sconst_2;
+					if_scmpeq L4;
+				L3:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L4:	aload_1;
+					sconst_2;
+					invokevirtual 137;		// setOutgoingLength(S)V
+					aload_2;
+					sconst_0;
+					sspush 32767;
+					aload_0;
+					invokespecial 110;		// tonwallet/KeyChain.getOccupiedStorageSize()S
+					ssub;
+					invokestatic 93;		// javacard/framework/Util.setShort([BSS)S
+					pop;
+					aload_1;
+					sconst_0;
+					sconst_2;
+					invokevirtual 138;		// sendBytes(SS)V
+					return;
+		}
+
+		.method public getOccupiedStorageSize(Ljavacard/framework/APDU;)V 3 {
+			.stack 3;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L1:	aload_0;
+					bspush 32;
+					putfield_s 35;		// short tonwallet/KeyChain.payloadLen
+					getfield_a_this 33;		// reference tonwallet/KeyChain.apduDataProtectionHandler
+					aload_1;
+					getfield_s_this 35;		// short tonwallet/KeyChain.payloadLen
+					invokevirtual 105;		// verifyInputApduData(Ljavacard/framework/APDU;S)V
+					aload_1;
+					invokevirtual 135;		// setOutgoing()S
+					sstore_3;
+				L2:	sload_3;
+					sconst_2;
+					if_scmpeq L4;
+				L3:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L4:	aload_1;
+					sconst_2;
+					invokevirtual 137;		// setOutgoingLength(S)V
+					aload_2;
+					sconst_0;
+					aload_0;
+					invokespecial 110;		// tonwallet/KeyChain.getOccupiedStorageSize()S
+					invokestatic 93;		// javacard/framework/Util.setShort([BSS)S
+					pop;
+					aload_1;
+					sconst_0;
+					sconst_2;
+					invokevirtual 138;		// sendBytes(SS)V
+					return;
+		}
+
+		.method public getHmac(Ljavacard/framework/APDU;)V 4 {
+			.stack 5;
+			.locals 3;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L1:	aload_0;
+					bspush 34;
+					putfield_s 35;		// short tonwallet/KeyChain.payloadLen
+					getfield_a_this 33;		// reference tonwallet/KeyChain.apduDataProtectionHandler
+					aload_1;
+					getfield_s_this 35;		// short tonwallet/KeyChain.payloadLen
+					invokevirtual 105;		// verifyInputApduData(Ljavacard/framework/APDU;S)V
+					aload_1;
+					invokevirtual 135;		// setOutgoing()S
+					sstore_3;
+				L2:	sload_3;
+					bspush 34;
+					if_scmpeq L4;
+				L3:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L4:	aload_2;
+					sconst_5;
+					invokestatic 92;		// javacard/framework/Util.getShort([BS)S
+					sstore 4;
+				L5:	sload 4;
+					iflt L7;
+				L6:	sload 4;
+					getfield_s_this 34;		// short tonwallet/KeyChain.numberOfStoredKeys
+					if_scmplt L8;
+				L7:	sspush 32512;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L8:	getfield_a_this 31;		// reference tonwallet/KeyChain.keyMacs
+					sload 4;
+					bspush 32;
+					smul;
+					aload_2;
+					sconst_0;
+					bspush 32;
+					invokestatic 130;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+					pop;
+					aload_2;
+					bspush 32;
+					getfield_a_this 29;		// reference tonwallet/KeyChain.keyLens
+					sload 4;
+					saload;
+					invokestatic 93;		// javacard/framework/Util.setShort([BSS)S
+					pop;
+					aload_1;
+					bspush 34;
+					invokevirtual 137;		// setOutgoingLength(S)V
+					aload_1;
+					sconst_0;
+					bspush 34;
+					invokevirtual 138;		// sendBytes(SS)V
+					return;
+		}
+
+		.method public checkKeyHmacConsistency(Ljavacard/framework/APDU;)V 5 {
+			.stack 6;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L1:	aload_0;
+					bspush 64;
+					putfield_s 35;		// short tonwallet/KeyChain.payloadLen
+					getfield_a_this 33;		// reference tonwallet/KeyChain.apduDataProtectionHandler
+					aload_1;
+					getfield_s_this 35;		// short tonwallet/KeyChain.payloadLen
+					invokevirtual 105;		// verifyInputApduData(Ljavacard/framework/APDU;S)V
+					aload_0;
+					aload_2;
+					sconst_5;
+					invokespecial 111;		// tonwallet/KeyChain.findKeyRecordIndex([BS)S
+					sstore_3;
+				L2:	sload_3;
+					iflt L4;
+				L3:	sload_3;
+					getfield_s_this 34;		// short tonwallet/KeyChain.numberOfStoredKeys
+					if_scmplt L5;
+				L4:	sspush 32512;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L5:	getfield_a_this 33;		// reference tonwallet/KeyChain.apduDataProtectionHandler
+					getfield_a_this 28;		// reference tonwallet/KeyChain.keyStore
+					getfield_a_this 30;		// reference tonwallet/KeyChain.keyOffsets
+					sload_3;
+					saload;
+					getfield_a_this 29;		// reference tonwallet/KeyChain.keyLens
+					sload_3;
+					saload;
+					aload_2;
+					sconst_5;
+					invokevirtual 112;		// verifyMacOfKey([BSS[BS)V
+					return;
+		}
+
+		.method public getKeyIndexInStorageAndLen(Ljavacard/framework/APDU;)V 6 {
+			.stack 4;
+			.locals 3;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L1:	aload_0;
+					bspush 64;
+					putfield_s 35;		// short tonwallet/KeyChain.payloadLen
+					getfield_a_this 33;		// reference tonwallet/KeyChain.apduDataProtectionHandler
+					aload_1;
+					getfield_s_this 35;		// short tonwallet/KeyChain.payloadLen
+					invokevirtual 105;		// verifyInputApduData(Ljavacard/framework/APDU;S)V
+					aload_1;
+					invokevirtual 135;		// setOutgoing()S
+					sstore_3;
+				L2:	sload_3;
+					sconst_4;
+					if_scmpeq L4;
+				L3:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L4:	aload_0;
+					aload_2;
+					sconst_5;
+					invokespecial 111;		// tonwallet/KeyChain.findKeyRecordIndex([BS)S
+					sstore 4;
+				L5:	sload 4;
+					sconst_m1;
+					if_scmpne L7;
+				L6:	sspush 32512;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L7:	aload_1;
+					sconst_4;
+					invokevirtual 137;		// setOutgoingLength(S)V
+					aload_2;
+					sconst_0;
+					sload 4;
+					invokestatic 93;		// javacard/framework/Util.setShort([BSS)S
+					pop;
+					aload_2;
+					sconst_2;
+					getfield_a_this 29;		// reference tonwallet/KeyChain.keyLens
+					sload 4;
+					saload;
+					invokestatic 93;		// javacard/framework/Util.setShort([BSS)S
+					pop;
+					aload_1;
+					sconst_0;
+					sconst_4;
+					invokevirtual 138;		// sendBytes(SS)V
+					return;
+		}
+
+		.method public getKeyChunk(Ljavacard/framework/APDU;)V 7 {
+			.stack 4;
+			.locals 6;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L1:	aload_0;
+					bspush 36;
+					putfield_s 35;		// short tonwallet/KeyChain.payloadLen
+					getfield_a_this 33;		// reference tonwallet/KeyChain.apduDataProtectionHandler
+					aload_1;
+					getfield_s_this 35;		// short tonwallet/KeyChain.payloadLen
+					invokevirtual 105;		// verifyInputApduData(Ljavacard/framework/APDU;S)V
+					aload_2;
+					sconst_5;
+					invokestatic 92;		// javacard/framework/Util.getShort([BS)S
+					sstore_3;
+				L2:	sload_3;
+					iflt L4;
+				L3:	sload_3;
+					getfield_s_this 34;		// short tonwallet/KeyChain.numberOfStoredKeys
+					if_scmplt L5;
+				L4:	sspush 32512;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L5:	aload_2;
+					bspush 7;
+					invokestatic 92;		// javacard/framework/Util.getShort([BS)S
+					sstore 4;
+				L6:	aload_1;
+					invokevirtual 135;		// setOutgoing()S
+					sstore 5;
+				L7:	getfield_a_this 30;		// reference tonwallet/KeyChain.keyOffsets
+					sload_3;
+					saload;
+					getfield_a_this 29;		// reference tonwallet/KeyChain.keyLens
+					sload_3;
+					saload;
+					sadd;
+					sconst_1;
+					ssub;
+					sstore 6;
+				L8:	getfield_a_this 30;		// reference tonwallet/KeyChain.keyOffsets
+					sload_3;
+					saload;
+					sload 4;
+					sadd;
+					sstore 7;
+				L9:	sload 4;
+					iflt L14;
+				L10:	sload 5;
+					ifle L14;
+				L11:	sload 7;
+					iflt L14;
+				L12:	sload 7;
+					sload 6;
+					if_scmpgt L14;
+				L13:	sload 7;
+					sload 5;
+					sadd;
+					sload 6;
+					sconst_1;
+					sadd;
+					if_scmple L15;
+				L14:	sspush 32513;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L15:	aload_1;
+					sload 5;
+					invokevirtual 137;		// setOutgoingLength(S)V
+					aload_1;
+					getfield_a_this 28;		// reference tonwallet/KeyChain.keyStore
+					sload 7;
+					sload 5;
+					invokevirtual 113;		// sendBytesLong([BSS)V
+					return;
+		}
+
+		.method public initiateDeleteOfKey(Ljavacard/framework/APDU;)V 8 {
+			.stack 5;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L1:	aload_0;
+					bspush 34;
+					putfield_s 35;		// short tonwallet/KeyChain.payloadLen
+					getfield_a_this 33;		// reference tonwallet/KeyChain.apduDataProtectionHandler
+					aload_1;
+					getfield_s_this 35;		// short tonwallet/KeyChain.payloadLen
+					invokevirtual 105;		// verifyInputApduData(Ljavacard/framework/APDU;S)V
+					aload_0;
+					aload_2;
+					sconst_5;
+					invokestatic 92;		// javacard/framework/Util.getShort([BS)S
+					putfield_s 39;		// short tonwallet/KeyChain.indOfKeyToDelete
+					getfield_s_this 39;		// short tonwallet/KeyChain.indOfKeyToDelete
+					iflt L3;
+				L2:	getfield_s_this 39;		// short tonwallet/KeyChain.indOfKeyToDelete
+					getfield_s_this 34;		// short tonwallet/KeyChain.numberOfStoredKeys
+					if_scmplt L4;
+				L3:	aload_0;
+					sconst_m1;
+					putfield_s 39;		// short tonwallet/KeyChain.indOfKeyToDelete
+					sspush 32512;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L4:	aload_1;
+					invokevirtual 135;		// setOutgoing()S
+					sstore_3;
+				L5:	sload_3;
+					sconst_2;
+					if_scmpeq L7;
+				L6:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L7:	aload_0;
+					sconst_0;
+					putfield_s 23;		// short tonwallet/KeyChain.deleteKeyChunkIsDone
+					aload_0;
+					sconst_0;
+					putfield_s 27;		// short tonwallet/KeyChain.deleteKeyRecordIsDone
+					aload_0;
+					sconst_0;
+					putfield_s 21;		// short tonwallet/KeyChain.deleteKeyChunkNumOfPackets
+					aload_0;
+					sconst_0;
+					putfield_s 26;		// short tonwallet/KeyChain.deleteKeyRecordNumOfPackets
+					aload_0;
+					sconst_0;
+					putfield_s 20;		// short tonwallet/KeyChain.deleteKeyChunkCounter
+					aload_0;
+					sconst_0;
+					putfield_s 24;		// short tonwallet/KeyChain.deleteKeyRecordCounter
+					aload_0;
+					sconst_0;
+					putfield_s 22;		// short tonwallet/KeyChain.tailLenForDeleteKeyChunk
+					aload_0;
+					sconst_0;
+					putfield_s 25;		// short tonwallet/KeyChain.tailLenForDeleteKeyRecord
+					getfield_s_this 39;		// short tonwallet/KeyChain.indOfKeyToDelete
+					getfield_s_this 34;		// short tonwallet/KeyChain.numberOfStoredKeys
+					sconst_1;
+					ssub;
+					if_scmpge L9;
+				L8:	aload_0;
+					getfield_a_this 30;		// reference tonwallet/KeyChain.keyOffsets
+					getfield_s_this 39;		// short tonwallet/KeyChain.indOfKeyToDelete
+					saload;
+					putfield_s 40;		// short tonwallet/KeyChain.keyOffsetToDelete
+					aload_0;
+					getfield_a_this 29;		// reference tonwallet/KeyChain.keyLens
+					getfield_s_this 39;		// short tonwallet/KeyChain.indOfKeyToDelete
+					saload;
+					putfield_s 41;		// short tonwallet/KeyChain.keyLenToDelete
+					aload_0;
+					getfield_a_this 30;		// reference tonwallet/KeyChain.keyOffsets
+					getfield_s_this 39;		// short tonwallet/KeyChain.indOfKeyToDelete
+					sconst_1;
+					sadd;
+					saload;
+					putfield_s 42;		// short tonwallet/KeyChain.offsetOfNextKey
+					aload_0;
+					aload_0;
+					invokespecial 110;		// tonwallet/KeyChain.getOccupiedStorageSize()S
+					putfield_s 43;		// short tonwallet/KeyChain.totalLen
+					aload_0;
+					getfield_s_this 43;		// short tonwallet/KeyChain.totalLen
+					getfield_s_this 42;		// short tonwallet/KeyChain.offsetOfNextKey
+					ssub;
+					sspush 128;
+					sdiv;
+					putfield_s 21;		// short tonwallet/KeyChain.deleteKeyChunkNumOfPackets
+					aload_0;
+					getfield_s_this 43;		// short tonwallet/KeyChain.totalLen
+					getfield_s_this 42;		// short tonwallet/KeyChain.offsetOfNextKey
+					ssub;
+					sspush 128;
+					srem;
+					putfield_s 22;		// short tonwallet/KeyChain.tailLenForDeleteKeyChunk
+					aload_0;
+					getfield_s_this 34;		// short tonwallet/KeyChain.numberOfStoredKeys
+					s2i;
+					getfield_s_this 39;		// short tonwallet/KeyChain.indOfKeyToDelete
+					s2i;
+					isub;
+					iconst_1;
+					isub;
+					bipush 12;
+					idiv;
+					i2s;
+					putfield_s 26;		// short tonwallet/KeyChain.deleteKeyRecordNumOfPackets
+					aload_0;
+					getfield_s_this 34;		// short tonwallet/KeyChain.numberOfStoredKeys
+					s2i;
+					getfield_s_this 39;		// short tonwallet/KeyChain.indOfKeyToDelete
+					s2i;
+					isub;
+					iconst_1;
+					isub;
+					bipush 12;
+					irem;
+					i2s;
+					putfield_s 25;		// short tonwallet/KeyChain.tailLenForDeleteKeyRecord
+				L9:	bspush 55;
+					invokestatic 80;		// org/globalplatform/GPSystem.setCardContentState(B)Z
+					pop;
+					aload_1;
+					sconst_2;
+					invokevirtual 137;		// setOutgoingLength(S)V
+					aload_2;
+					sconst_0;
+					getfield_s_this 41;		// short tonwallet/KeyChain.keyLenToDelete
+					invokestatic 93;		// javacard/framework/Util.setShort([BSS)S
+					pop;
+					aload_1;
+					sconst_0;
+					sconst_2;
+					invokevirtual 138;		// sendBytes(SS)V
+					return;
+		}
+
+		.method public getDeleteKeyChunkCounter(Ljavacard/framework/APDU;)V 9 {
+			.stack 3;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L1:	aload_0;
+					bspush 32;
+					putfield_s 35;		// short tonwallet/KeyChain.payloadLen
+					getfield_a_this 33;		// reference tonwallet/KeyChain.apduDataProtectionHandler
+					aload_1;
+					getfield_s_this 35;		// short tonwallet/KeyChain.payloadLen
+					invokevirtual 105;		// verifyInputApduData(Ljavacard/framework/APDU;S)V
+					aload_1;
+					invokevirtual 135;		// setOutgoing()S
+					sstore_3;
+				L2:	sload_3;
+					sconst_2;
+					if_scmpeq L4;
+				L3:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L4:	aload_1;
+					sconst_2;
+					invokevirtual 137;		// setOutgoingLength(S)V
+					aload_2;
+					sconst_0;
+					getfield_s_this 20;		// short tonwallet/KeyChain.deleteKeyChunkCounter
+					invokestatic 93;		// javacard/framework/Util.setShort([BSS)S
+					pop;
+					aload_1;
+					sconst_0;
+					sconst_2;
+					invokevirtual 138;		// sendBytes(SS)V
+					return;
+		}
+
+		.method public getDeleteKeyChunkNumOfPackets(Ljavacard/framework/APDU;)V 10 {
+			.stack 3;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L1:	aload_0;
+					bspush 32;
+					putfield_s 35;		// short tonwallet/KeyChain.payloadLen
+					getfield_a_this 33;		// reference tonwallet/KeyChain.apduDataProtectionHandler
+					aload_1;
+					getfield_s_this 35;		// short tonwallet/KeyChain.payloadLen
+					invokevirtual 105;		// verifyInputApduData(Ljavacard/framework/APDU;S)V
+					aload_1;
+					invokevirtual 135;		// setOutgoing()S
+					sstore_3;
+				L2:	sload_3;
+					sconst_2;
+					if_scmpeq L4;
+				L3:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L4:	aload_1;
+					sconst_2;
+					invokevirtual 137;		// setOutgoingLength(S)V
+					aload_2;
+					sconst_0;
+					getfield_s_this 21;		// short tonwallet/KeyChain.deleteKeyChunkNumOfPackets
+					invokestatic 93;		// javacard/framework/Util.setShort([BSS)S
+					pop;
+					aload_1;
+					sconst_0;
+					sconst_2;
+					invokevirtual 138;		// sendBytes(SS)V
+					return;
+		}
+
+		.method public getDeleteKeyRecordCounter(Ljavacard/framework/APDU;)V 11 {
+			.stack 3;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L1:	aload_0;
+					bspush 32;
+					putfield_s 35;		// short tonwallet/KeyChain.payloadLen
+					getfield_a_this 33;		// reference tonwallet/KeyChain.apduDataProtectionHandler
+					aload_1;
+					getfield_s_this 35;		// short tonwallet/KeyChain.payloadLen
+					invokevirtual 105;		// verifyInputApduData(Ljavacard/framework/APDU;S)V
+					aload_1;
+					invokevirtual 135;		// setOutgoing()S
+					sstore_3;
+				L2:	sload_3;
+					sconst_2;
+					if_scmpeq L4;
+				L3:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L4:	aload_1;
+					sconst_2;
+					invokevirtual 137;		// setOutgoingLength(S)V
+					aload_2;
+					sconst_0;
+					getfield_s_this 24;		// short tonwallet/KeyChain.deleteKeyRecordCounter
+					invokestatic 93;		// javacard/framework/Util.setShort([BSS)S
+					pop;
+					aload_1;
+					sconst_0;
+					sconst_2;
+					invokevirtual 138;		// sendBytes(SS)V
+					return;
+		}
+
+		.method public getDeleteKeyRecordNumOfPackets(Ljavacard/framework/APDU;)V 12 {
+			.stack 3;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L1:	aload_0;
+					bspush 32;
+					putfield_s 35;		// short tonwallet/KeyChain.payloadLen
+					getfield_a_this 33;		// reference tonwallet/KeyChain.apduDataProtectionHandler
+					aload_1;
+					getfield_s_this 35;		// short tonwallet/KeyChain.payloadLen
+					invokevirtual 105;		// verifyInputApduData(Ljavacard/framework/APDU;S)V
+					aload_1;
+					invokevirtual 135;		// setOutgoing()S
+					sstore_3;
+				L2:	sload_3;
+					sconst_2;
+					if_scmpeq L4;
+				L3:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L4:	aload_1;
+					sconst_2;
+					invokevirtual 137;		// setOutgoingLength(S)V
+					aload_2;
+					sconst_0;
+					getfield_s_this 26;		// short tonwallet/KeyChain.deleteKeyRecordNumOfPackets
+					invokestatic 93;		// javacard/framework/Util.setShort([BSS)S
+					pop;
+					aload_1;
+					sconst_0;
+					sconst_2;
+					invokevirtual 138;		// sendBytes(SS)V
+					return;
+		}
+
+		.method public deleteKeyChunk(Ljavacard/framework/APDU;)V 13 {
+			.stack 5;
+			.locals 5;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L1:	aload_0;
+					bspush 32;
+					putfield_s 35;		// short tonwallet/KeyChain.payloadLen
+					getfield_a_this 33;		// reference tonwallet/KeyChain.apduDataProtectionHandler
+					aload_1;
+					getfield_s_this 35;		// short tonwallet/KeyChain.payloadLen
+					invokevirtual 105;		// verifyInputApduData(Ljavacard/framework/APDU;S)V
+					aload_1;
+					invokevirtual 135;		// setOutgoing()S
+					sstore_3;
+				L2:	sload_3;
+					sconst_1;
+					if_scmpeq L4;
+				L3:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L4:	getfield_s_this 23;		// short tonwallet/KeyChain.deleteKeyChunkIsDone
+					ifne L7;
+				L5:	getfield_s_this 39;		// short tonwallet/KeyChain.indOfKeyToDelete
+					getfield_s_this 34;		// short tonwallet/KeyChain.numberOfStoredKeys
+					sconst_1;
+					ssub;
+					if_scmpne L7;
+				L6:	invokestatic 119;		// javacard/framework/JCSystem.beginTransaction()V
+					getfield_a_this 28;		// reference tonwallet/KeyChain.keyStore
+					getfield_a_this 30;		// reference tonwallet/KeyChain.keyOffsets
+					getfield_s_this 39;		// short tonwallet/KeyChain.indOfKeyToDelete
+					saload;
+					getfield_a_this 29;		// reference tonwallet/KeyChain.keyLens
+					getfield_s_this 39;		// short tonwallet/KeyChain.indOfKeyToDelete
+					saload;
+					sconst_0;
+					invokestatic 83;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+					pop;
+					aload_0;
+					sconst_1;
+					putfield_s 23;		// short tonwallet/KeyChain.deleteKeyChunkIsDone
+					invokestatic 120;		// javacard/framework/JCSystem.commitTransaction()V
+				L7:	getfield_s_this 23;		// short tonwallet/KeyChain.deleteKeyChunkIsDone
+					ifne L22;
+				L8:	invokestatic 119;		// javacard/framework/JCSystem.beginTransaction()V
+					getfield_s_this 20;		// short tonwallet/KeyChain.deleteKeyChunkCounter
+					getfield_s_this 21;		// short tonwallet/KeyChain.deleteKeyChunkNumOfPackets
+					if_scmpge L12;
+				L9:	getfield_s_this 20;		// short tonwallet/KeyChain.deleteKeyChunkCounter
+					sspush 128;
+					smul;
+					sstore 4;
+				L10:	sload 4;
+					sspush 128;
+					sadd;
+					sstore 5;
+				L11:	goto L14;
+				L12:	getfield_s_this 21;		// short tonwallet/KeyChain.deleteKeyChunkNumOfPackets
+					sspush 128;
+					smul;
+					sstore 4;
+				L13:	sload 4;
+					getfield_s_this 22;		// short tonwallet/KeyChain.tailLenForDeleteKeyChunk
+					sadd;
+					sstore 5;
+				L14:	sload 4;
+					sstore 6;
+				L15:	goto L17;
+				L16:	getfield_a_this 28;		// reference tonwallet/KeyChain.keyStore
+					getfield_s_this 40;		// short tonwallet/KeyChain.keyOffsetToDelete
+					sload 6;
+					sadd;
+					getfield_a_this 28;		// reference tonwallet/KeyChain.keyStore
+					getfield_s_this 42;		// short tonwallet/KeyChain.offsetOfNextKey
+					sload 6;
+					sadd;
+					baload;
+					bastore;
+					sinc 6 1;
+				L17:	sload 6;
+					sload 5;
+					if_scmplt L16;
+				L18:	getfield_s_this 20;		// short tonwallet/KeyChain.deleteKeyChunkCounter
+					getfield_s_this 21;		// short tonwallet/KeyChain.deleteKeyChunkNumOfPackets
+					if_scmpne L20;
+				L19:	aload_0;
+					sconst_1;
+					putfield_s 23;		// short tonwallet/KeyChain.deleteKeyChunkIsDone
+					goto L21;
+				L20:	aload_0;
+					dup;
+					getfield_s 20;		// short tonwallet/KeyChain.deleteKeyChunkCounter
+					sconst_1;
+					sadd;
+					putfield_s 20;		// short tonwallet/KeyChain.deleteKeyChunkCounter
+				L21:	invokestatic 120;		// javacard/framework/JCSystem.commitTransaction()V
+				L22:	aload_1;
+					sconst_1;
+					invokevirtual 137;		// setOutgoingLength(S)V
+					aload_2;
+					sconst_0;
+					getfield_s_this 23;		// short tonwallet/KeyChain.deleteKeyChunkIsDone
+					s2b;
+					bastore;
+					aload_1;
+					sconst_0;
+					sconst_1;
+					invokevirtual 138;		// sendBytes(SS)V
+					return;
+		}
+
+		.method public deleteKeyRecord(Ljavacard/framework/APDU;)V 14 {
+			.stack 7;
+			.locals 6;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	getfield_s_this 23;		// short tonwallet/KeyChain.deleteKeyChunkIsDone
+					sconst_1;
+					if_scmpeq L2;
+				L1:	sspush 32521;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L3:	aload_0;
+					bspush 32;
+					putfield_s 35;		// short tonwallet/KeyChain.payloadLen
+					getfield_a_this 33;		// reference tonwallet/KeyChain.apduDataProtectionHandler
+					aload_1;
+					getfield_s_this 35;		// short tonwallet/KeyChain.payloadLen
+					invokevirtual 105;		// verifyInputApduData(Ljavacard/framework/APDU;S)V
+					aload_1;
+					invokevirtual 135;		// setOutgoing()S
+					sstore_3;
+				L4:	sload_3;
+					sconst_1;
+					if_scmpeq L6;
+				L5:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L6:	getfield_s_this 27;		// short tonwallet/KeyChain.deleteKeyRecordIsDone
+					ifne L9;
+				L7:	getfield_s_this 39;		// short tonwallet/KeyChain.indOfKeyToDelete
+					getfield_s_this 34;		// short tonwallet/KeyChain.numberOfStoredKeys
+					sconst_1;
+					ssub;
+					if_scmpne L9;
+				L8:	invokestatic 119;		// javacard/framework/JCSystem.beginTransaction()V
+					aload_0;
+					getfield_s_this 39;		// short tonwallet/KeyChain.indOfKeyToDelete
+					invokespecial 121;		// tonwallet/KeyChain.resetKeyRecord(S)V
+					aload_0;
+					sconst_1;
+					putfield_s 27;		// short tonwallet/KeyChain.deleteKeyRecordIsDone
+					aload_0;
+					dup;
+					getfield_s 34;		// short tonwallet/KeyChain.numberOfStoredKeys
+					sconst_1;
+					ssub;
+					putfield_s 34;		// short tonwallet/KeyChain.numberOfStoredKeys
+					bspush 23;
+					invokestatic 80;		// org/globalplatform/GPSystem.setCardContentState(B)Z
+					pop;
+					invokestatic 120;		// javacard/framework/JCSystem.commitTransaction()V
+				L9:	getfield_s_this 27;		// short tonwallet/KeyChain.deleteKeyRecordIsDone
+					ifne_w L26;
+				L10:	invokestatic 119;		// javacard/framework/JCSystem.beginTransaction()V
+					getfield_s_this 24;		// short tonwallet/KeyChain.deleteKeyRecordCounter
+					getfield_s_this 26;		// short tonwallet/KeyChain.deleteKeyRecordNumOfPackets
+					if_scmpge L14;
+				L11:	getfield_s_this 39;		// short tonwallet/KeyChain.indOfKeyToDelete
+					sconst_1;
+					sadd;
+					getfield_s_this 24;		// short tonwallet/KeyChain.deleteKeyRecordCounter
+					bspush 12;
+					smul;
+					sadd;
+					sstore 4;
+				L12:	sload 4;
+					bspush 12;
+					sadd;
+					sstore 5;
+				L13:	goto L16;
+				L14:	getfield_s_this 39;		// short tonwallet/KeyChain.indOfKeyToDelete
+					sconst_1;
+					sadd;
+					getfield_s_this 26;		// short tonwallet/KeyChain.deleteKeyRecordNumOfPackets
+					bspush 12;
+					smul;
+					sadd;
+					sstore 4;
+				L15:	sload 4;
+					getfield_s_this 25;		// short tonwallet/KeyChain.tailLenForDeleteKeyRecord
+					sadd;
+					sstore 5;
+				L16:	sload 4;
+					sstore 6;
+				L17:	goto L21;
+				L18:	getfield_a_this 30;		// reference tonwallet/KeyChain.keyOffsets
+					sload 6;
+					saload;
+					getfield_s_this 41;		// short tonwallet/KeyChain.keyLenToDelete
+					ssub;
+					sstore 7;
+				L19:	aload_0;
+					sload 6;
+					sconst_1;
+					ssub;
+					sload 7;
+					getfield_a_this 29;		// reference tonwallet/KeyChain.keyLens
+					sload 6;
+					saload;
+					getfield_a_this 31;		// reference tonwallet/KeyChain.keyMacs
+					sload 6;
+					bspush 32;
+					smul;
+					invokespecial 122;		// tonwallet/KeyChain.setKeyRecord(SSS[BS)V
+				L20:	sinc 6 1;
+				L21:	sload 6;
+					sload 5;
+					if_scmplt L18;
+				L22:	getfield_s_this 24;		// short tonwallet/KeyChain.deleteKeyRecordCounter
+					getfield_s_this 26;		// short tonwallet/KeyChain.deleteKeyRecordNumOfPackets
+					if_scmpne L24;
+				L23:	aload_0;
+					sconst_1;
+					putfield_s 27;		// short tonwallet/KeyChain.deleteKeyRecordIsDone
+					aload_0;
+					dup;
+					getfield_s 34;		// short tonwallet/KeyChain.numberOfStoredKeys
+					sconst_1;
+					ssub;
+					putfield_s 34;		// short tonwallet/KeyChain.numberOfStoredKeys
+					bspush 23;
+					invokestatic 80;		// org/globalplatform/GPSystem.setCardContentState(B)Z
+					pop;
+					goto L25;
+				L24:	aload_0;
+					dup;
+					getfield_s 24;		// short tonwallet/KeyChain.deleteKeyRecordCounter
+					sconst_1;
+					sadd;
+					putfield_s 24;		// short tonwallet/KeyChain.deleteKeyRecordCounter
+				L25:	invokestatic 120;		// javacard/framework/JCSystem.commitTransaction()V
+				L26:	aload_1;
+					sconst_1;
+					invokevirtual 137;		// setOutgoingLength(S)V
+					aload_2;
+					sconst_0;
+					getfield_s_this 27;		// short tonwallet/KeyChain.deleteKeyRecordIsDone
+					s2b;
+					bastore;
+					aload_1;
+					sconst_0;
+					sconst_1;
+					invokevirtual 138;		// sendBytes(SS)V
+					return;
+		}
+
+		.method public getNumberOfKeys(Ljavacard/framework/APDU;)V 15 {
+			.stack 3;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L1:	aload_0;
+					bspush 32;
+					putfield_s 35;		// short tonwallet/KeyChain.payloadLen
+					getfield_a_this 33;		// reference tonwallet/KeyChain.apduDataProtectionHandler
+					aload_1;
+					getfield_s_this 35;		// short tonwallet/KeyChain.payloadLen
+					invokevirtual 105;		// verifyInputApduData(Ljavacard/framework/APDU;S)V
+					aload_1;
+					invokevirtual 135;		// setOutgoing()S
+					sstore_3;
+				L2:	sload_3;
+					sconst_2;
+					if_scmpeq L4;
+				L3:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L4:	aload_1;
+					sconst_2;
+					invokevirtual 137;		// setOutgoingLength(S)V
+					aload_2;
+					sconst_0;
+					getfield_s_this 34;		// short tonwallet/KeyChain.numberOfStoredKeys
+					invokestatic 93;		// javacard/framework/Util.setShort([BSS)S
+					pop;
+					aload_1;
+					sconst_0;
+					sconst_2;
+					invokevirtual 138;		// sendBytes(SS)V
+					return;
+		}
+
+		.method public checkAvailabilityOfStorageFreeVolumeForNewKey(Ljavacard/framework/APDU;)V 16 {
+			.stack 3;
+			.locals 3;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	getfield_s_this 34;		// short tonwallet/KeyChain.numberOfStoredKeys
+					sspush 1023;
+					if_scmpne L2;
+				L1:	sspush 32520;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L3:	aload_0;
+					bspush 34;
+					putfield_s 35;		// short tonwallet/KeyChain.payloadLen
+					aload_0;
+					sconst_0;
+					putfield_s 36;		// short tonwallet/KeyChain.newKeySize
+					aload_0;
+					sconst_0;
+					putfield_s 37;		// short tonwallet/KeyChain.totalIncomingBytesOfNewKey
+					getfield_a_this 33;		// reference tonwallet/KeyChain.apduDataProtectionHandler
+					aload_1;
+					getfield_s_this 35;		// short tonwallet/KeyChain.payloadLen
+					invokevirtual 105;		// verifyInputApduData(Ljavacard/framework/APDU;S)V
+					aload_2;
+					sconst_5;
+					invokestatic 92;		// javacard/framework/Util.getShort([BS)S
+					sstore_3;
+				L4:	sload_3;
+					ifle L6;
+				L5:	sload_3;
+					sspush 8192;
+					if_scmple L7;
+				L6:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L7:	sspush 32767;
+					aload_0;
+					invokespecial 110;		// tonwallet/KeyChain.getOccupiedStorageSize()S
+					ssub;
+					sstore 4;
+				L8:	sload_3;
+					sload 4;
+					if_scmple L10;
+				L9:	sspush 32515;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L10:	aload_0;
+					sload_3;
+					putfield_s 36;		// short tonwallet/KeyChain.newKeySize
+					return;
+		}
+
+		.method public addKeyChunk(Ljavacard/framework/APDU;)V 17 {
+			.stack 6;
+			.locals 5;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	getfield_s_this 34;		// short tonwallet/KeyChain.numberOfStoredKeys
+					sspush 1023;
+					if_scmpne L2;
+				L1:	sspush 32520;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	getfield_s_this 36;		// short tonwallet/KeyChain.newKeySize
+					ifgt L4;
+				L3:	sspush 32516;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L4:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L5:	aload_2;
+					sconst_2;
+					baload;
+					sstore_3;
+				L6:	sload_3;
+					sconst_2;
+					if_scmpne_w L17;
+				L7:	getfield_s_this 37;		// short tonwallet/KeyChain.totalIncomingBytesOfNewKey
+					getfield_s_this 36;		// short tonwallet/KeyChain.newKeySize
+					if_scmpeq L9;
+				L8:	sspush 32517;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L9:	aload_0;
+					bspush 64;
+					putfield_s 35;		// short tonwallet/KeyChain.payloadLen
+					getfield_a_this 33;		// reference tonwallet/KeyChain.apduDataProtectionHandler
+					aload_1;
+					getfield_s_this 35;		// short tonwallet/KeyChain.payloadLen
+					invokevirtual 105;		// verifyInputApduData(Ljavacard/framework/APDU;S)V
+					aload_1;
+					invokevirtual 135;		// setOutgoing()S
+					sstore 4;
+				L10:	sload 4;
+					sconst_2;
+					if_scmpeq L12;
+				L11:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L12:	getfield_a_this 33;		// reference tonwallet/KeyChain.apduDataProtectionHandler
+					getfield_a_this 32;		// reference tonwallet/KeyChain.keyTmpBuffer
+					sconst_0;
+					getfield_s_this 36;		// short tonwallet/KeyChain.newKeySize
+					aload_2;
+					sconst_5;
+					invokevirtual 112;		// verifyMacOfKey([BSS[BS)V
+					aload_0;
+					aload_2;
+					sconst_5;
+					invokespecial 111;		// tonwallet/KeyChain.findKeyRecordIndex([BS)S
+					sstore 5;
+				L13:	sload 5;
+					iflt L15;
+				L14:	sspush 32518;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L15:	getfield_a_this 32;		// reference tonwallet/KeyChain.keyTmpBuffer
+					sconst_0;
+					getfield_a_this 28;		// reference tonwallet/KeyChain.keyStore
+					aload_0;
+					invokespecial 110;		// tonwallet/KeyChain.getOccupiedStorageSize()S
+					getfield_s_this 36;		// short tonwallet/KeyChain.newKeySize
+					invokestatic 130;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+					pop;
+					invokestatic 119;		// javacard/framework/JCSystem.beginTransaction()V
+					aload_0;
+					getfield_s_this 34;		// short tonwallet/KeyChain.numberOfStoredKeys
+					aload_0;
+					invokespecial 110;		// tonwallet/KeyChain.getOccupiedStorageSize()S
+					getfield_s_this 36;		// short tonwallet/KeyChain.newKeySize
+					aload_2;
+					sconst_5;
+					invokespecial 122;		// tonwallet/KeyChain.setKeyRecord(SSS[BS)V
+					aload_0;
+					dup;
+					getfield_s 34;		// short tonwallet/KeyChain.numberOfStoredKeys
+					sconst_1;
+					sadd;
+					putfield_s 34;		// short tonwallet/KeyChain.numberOfStoredKeys
+					invokestatic 120;		// javacard/framework/JCSystem.commitTransaction()V
+					aload_0;
+					sconst_0;
+					putfield_s 36;		// short tonwallet/KeyChain.newKeySize
+					aload_0;
+					sconst_0;
+					putfield_s 37;		// short tonwallet/KeyChain.totalIncomingBytesOfNewKey
+					aload_1;
+					sconst_2;
+					invokevirtual 137;		// setOutgoingLength(S)V
+					aload_2;
+					sconst_0;
+					getfield_s_this 34;		// short tonwallet/KeyChain.numberOfStoredKeys
+					invokestatic 93;		// javacard/framework/Util.setShort([BSS)S
+					pop;
+					aload_1;
+					sconst_0;
+					sconst_2;
+					invokevirtual 138;		// sendBytes(SS)V
+				L16:	goto L26;
+				L17:	getfield_a_this 33;		// reference tonwallet/KeyChain.apduDataProtectionHandler
+					aload_1;
+					invokevirtual 123;		// verifyInputApduDataContainingKeyChunk(Ljavacard/framework/APDU;)S
+					sstore 4;
+				L18:	sload_3;
+					ifne L20;
+				L19:	aload_0;
+					sconst_0;
+					putfield_s 37;		// short tonwallet/KeyChain.totalIncomingBytesOfNewKey
+				L20:	sspush 32767;
+					aload_0;
+					invokespecial 110;		// tonwallet/KeyChain.getOccupiedStorageSize()S
+					ssub;
+					sstore 5;
+				L21:	getfield_s_this 37;		// short tonwallet/KeyChain.totalIncomingBytesOfNewKey
+					sload 4;
+					sadd;
+					sstore 6;
+				L22:	sload 6;
+					sload 5;
+					if_scmpgt L24;
+				L23:	sload 6;
+					getfield_s_this 36;		// short tonwallet/KeyChain.newKeySize
+					if_scmple L25;
+				L24:	sspush 32514;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L25:	aload_2;
+					bspush 6;
+					getfield_a_this 32;		// reference tonwallet/KeyChain.keyTmpBuffer
+					getfield_s_this 37;		// short tonwallet/KeyChain.totalIncomingBytesOfNewKey
+					sload 4;
+					invokestatic 130;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+					pop;
+					aload_0;
+					sload 6;
+					putfield_s 37;		// short tonwallet/KeyChain.totalIncomingBytesOfNewKey
+				L26:	return;
+		}
+
+		.method public initiateChangeOfKey(Ljavacard/framework/APDU;)V 18 {
+			.stack 3;
+			.locals 1;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L1:	aload_0;
+					bspush 34;
+					putfield_s 35;		// short tonwallet/KeyChain.payloadLen
+					getfield_a_this 33;		// reference tonwallet/KeyChain.apduDataProtectionHandler
+					aload_1;
+					getfield_s_this 35;		// short tonwallet/KeyChain.payloadLen
+					invokevirtual 105;		// verifyInputApduData(Ljavacard/framework/APDU;S)V
+					aload_0;
+					aload_2;
+					sconst_5;
+					invokestatic 92;		// javacard/framework/Util.getShort([BS)S
+					putfield_s 38;		// short tonwallet/KeyChain.indOfKeyToChange
+					getfield_s_this 38;		// short tonwallet/KeyChain.indOfKeyToChange
+					iflt L3;
+				L2:	getfield_s_this 38;		// short tonwallet/KeyChain.indOfKeyToChange
+					getfield_s_this 34;		// short tonwallet/KeyChain.numberOfStoredKeys
+					if_scmplt L4;
+				L3:	aload_0;
+					sconst_m1;
+					putfield_s 38;		// short tonwallet/KeyChain.indOfKeyToChange
+					sspush 32512;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L4:	return;
+		}
+
+		.method public changeKeyChunk(Ljavacard/framework/APDU;)V 19 {
+			.stack 6;
+			.locals 4;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	getfield_s_this 38;		// short tonwallet/KeyChain.indOfKeyToChange
+					sconst_m1;
+					if_scmpne L2;
+				L1:	sspush 32519;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L3:	aload_2;
+					sconst_2;
+					baload;
+					sstore_3;
+				L4:	sload_3;
+					sconst_2;
+					if_scmpne_w L15;
+				L5:	getfield_s_this 37;		// short tonwallet/KeyChain.totalIncomingBytesOfNewKey
+					getfield_a_this 29;		// reference tonwallet/KeyChain.keyLens
+					getfield_s_this 38;		// short tonwallet/KeyChain.indOfKeyToChange
+					saload;
+					if_scmpeq L7;
+				L6:	sspush 32517;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L7:	aload_0;
+					bspush 64;
+					putfield_s 35;		// short tonwallet/KeyChain.payloadLen
+					getfield_a_this 33;		// reference tonwallet/KeyChain.apduDataProtectionHandler
+					aload_1;
+					getfield_s_this 35;		// short tonwallet/KeyChain.payloadLen
+					invokevirtual 105;		// verifyInputApduData(Ljavacard/framework/APDU;S)V
+					aload_1;
+					invokevirtual 135;		// setOutgoing()S
+					sstore 4;
+				L8:	sload 4;
+					sconst_2;
+					if_scmpeq L10;
+				L9:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L10:	getfield_a_this 33;		// reference tonwallet/KeyChain.apduDataProtectionHandler
+					getfield_a_this 32;		// reference tonwallet/KeyChain.keyTmpBuffer
+					sconst_0;
+					getfield_a_this 29;		// reference tonwallet/KeyChain.keyLens
+					getfield_s_this 38;		// short tonwallet/KeyChain.indOfKeyToChange
+					saload;
+					aload_2;
+					sconst_5;
+					invokevirtual 112;		// verifyMacOfKey([BSS[BS)V
+					aload_0;
+					aload_2;
+					sconst_5;
+					invokespecial 111;		// tonwallet/KeyChain.findKeyRecordIndex([BS)S
+					sstore 5;
+				L11:	sload 5;
+					iflt L13;
+				L12:	sspush 32518;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L13:	getfield_a_this 32;		// reference tonwallet/KeyChain.keyTmpBuffer
+					sconst_0;
+					getfield_a_this 28;		// reference tonwallet/KeyChain.keyStore
+					getfield_a_this 30;		// reference tonwallet/KeyChain.keyOffsets
+					getfield_s_this 38;		// short tonwallet/KeyChain.indOfKeyToChange
+					saload;
+					getfield_a_this 29;		// reference tonwallet/KeyChain.keyLens
+					getfield_s_this 38;		// short tonwallet/KeyChain.indOfKeyToChange
+					saload;
+					invokestatic 130;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+					pop;
+					invokestatic 119;		// javacard/framework/JCSystem.beginTransaction()V
+					aload_0;
+					getfield_s_this 38;		// short tonwallet/KeyChain.indOfKeyToChange
+					aload_2;
+					sconst_5;
+					invokespecial 124;		// tonwallet/KeyChain.setMac(S[BS)V
+					aload_0;
+					sconst_m1;
+					putfield_s 38;		// short tonwallet/KeyChain.indOfKeyToChange
+					invokestatic 120;		// javacard/framework/JCSystem.commitTransaction()V
+					aload_0;
+					sconst_0;
+					putfield_s 37;		// short tonwallet/KeyChain.totalIncomingBytesOfNewKey
+					aload_1;
+					sconst_2;
+					invokevirtual 137;		// setOutgoingLength(S)V
+					aload_2;
+					sconst_0;
+					getfield_s_this 34;		// short tonwallet/KeyChain.numberOfStoredKeys
+					invokestatic 93;		// javacard/framework/Util.setShort([BSS)S
+					pop;
+					aload_1;
+					sconst_0;
+					sconst_2;
+					invokevirtual 138;		// sendBytes(SS)V
+				L14:	goto L22;
+				L15:	getfield_a_this 33;		// reference tonwallet/KeyChain.apduDataProtectionHandler
+					aload_1;
+					invokevirtual 123;		// verifyInputApduDataContainingKeyChunk(Ljavacard/framework/APDU;)S
+					sstore 4;
+				L16:	sload_3;
+					ifne L18;
+				L17:	aload_0;
+					sconst_0;
+					putfield_s 37;		// short tonwallet/KeyChain.totalIncomingBytesOfNewKey
+				L18:	getfield_s_this 37;		// short tonwallet/KeyChain.totalIncomingBytesOfNewKey
+					sload 4;
+					sadd;
+					sstore 5;
+				L19:	sload 5;
+					getfield_a_this 29;		// reference tonwallet/KeyChain.keyLens
+					getfield_s_this 38;		// short tonwallet/KeyChain.indOfKeyToChange
+					saload;
+					if_scmple L21;
+				L20:	sspush 32514;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L21:	aload_2;
+					bspush 6;
+					getfield_a_this 32;		// reference tonwallet/KeyChain.keyTmpBuffer
+					getfield_s_this 37;		// short tonwallet/KeyChain.totalIncomingBytesOfNewKey
+					sload 4;
+					invokestatic 130;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+					pop;
+					aload_0;
+					sload 5;
+					putfield_s 37;		// short tonwallet/KeyChain.totalIncomingBytesOfNewKey
+				L22:	return;
+		}
+
+		.method private resetKeyOffsetAndlen(S)V {
+			.stack 3;
+			.locals 0;
+
+				L0:	getfield_a_this 30;		// reference tonwallet/KeyChain.keyOffsets
+					sload_1;
+					sconst_0;
+					sastore;
+					getfield_a_this 29;		// reference tonwallet/KeyChain.keyLens
+					sload_1;
+					sconst_0;
+					sastore;
+					return;
+		}
+
+		.method private resetKeyRecord(S)V {
+			.stack 4;
+			.locals 0;
+
+				L0:	getfield_a_this 30;		// reference tonwallet/KeyChain.keyOffsets
+					sload_1;
+					sconst_0;
+					sastore;
+					getfield_a_this 29;		// reference tonwallet/KeyChain.keyLens
+					sload_1;
+					sconst_0;
+					sastore;
+					getfield_a_this 31;		// reference tonwallet/KeyChain.keyMacs
+					sload_1;
+					bspush 32;
+					smul;
+					bspush 32;
+					sconst_0;
+					invokestatic 83;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+					pop;
+					return;
+		}
+
+		.method private setKeyRecord(SSS[BS)V {
+			.stack 4;
+			.locals 0;
+
+				L0:	getfield_a_this 30;		// reference tonwallet/KeyChain.keyOffsets
+					sload_1;
+					sload_2;
+					sastore;
+					getfield_a_this 29;		// reference tonwallet/KeyChain.keyLens
+					sload_1;
+					sload_3;
+					sastore;
+					aload_0;
+					sload_1;
+					aload 4;
+					sload 5;
+					invokespecial 124;		// tonwallet/KeyChain.setMac(S[BS)V
+					return;
+		}
+
+		.method private setMac(S[BS)V {
+			.stack 5;
+			.locals 0;
+
+				L0:	aload_2;
+					ifnull L2;
+				L1:	aload_2;
+					arraylength;
+					sload_3;
+					ssub;
+					bspush 32;
+					if_scmpge L3;
+				L2:	sspush 20224;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L3:	aload_2;
+					sload_3;
+					getfield_a_this 31;		// reference tonwallet/KeyChain.keyMacs
+					sload_1;
+					bspush 32;
+					smul;
+					bspush 32;
+					invokestatic 125;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					return;
+		}
+
+	}
+
+	.class public PinHandler 8 extends 0.0 {		// extends java/lang/Object
+
+		.fields {
+			private ApduDataProtectionHandler apduDataProtectionHandler 0;		// Ltonwallet/ApduDataProtectionHandler;
+			private short numPinFails 1;		// S
+			private static final byte PIN_LENGTH = 4;		// B
+			private static PinHandler pinHandler;		// Ltonwallet/PinHandler;
+		}
+
+		.publicMethodTable 1 {
+			equals(Ljava/lang/Object;)Z;
+			checkPin(Ljavacard/framework/APDU;)V;
+			getNumPinFails()S;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public static getInstance()Ltonwallet/PinHandler; 0 {
+			.stack 2;
+			.locals 0;
+
+				L0:	getstatic_a 126;		// reference tonwallet/PinHandler.pinHandler
+					ifnonnull L2;
+				L1:	new 127;		// tonwallet/PinHandler
+					dup;
+					invokespecial 128;		// tonwallet/PinHandler.<init>()V
+					putstatic_a 126;		// reference tonwallet/PinHandler.pinHandler
+				L2:	getstatic_a 126;		// reference tonwallet/PinHandler.pinHandler
+					areturn;
+		}
+
+		.method private <init>()V {
+			.stack 2;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 71;		// java/lang/Object.<init>()V
+					aload_0;
+					sconst_0;
+					putfield_s 44;		// short tonwallet/PinHandler.numPinFails
+					aload_0;
+					invokestatic 116;		// tonwallet/ApduDataProtectionHandler.getInstance()Ltonwallet/ApduDataProtectionHandler;
+					putfield_a 45;		// reference tonwallet/PinHandler.apduDataProtectionHandler
+					return;
+		}
+
+		.method public checkPin(Ljavacard/framework/APDU;)V 1 {
+			.stack 4;
+			.locals 3;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L1:	bspush 36;
+					sstore_3;
+				L2:	getfield_a_this 45;		// reference tonwallet/PinHandler.apduDataProtectionHandler
+					aload_1;
+					sload_3;
+					invokevirtual 105;		// verifyInputApduData(Ljavacard/framework/APDU;S)V
+					sconst_3;
+					aload_2;
+					sconst_5;
+					sconst_4;
+					invokestatic 131;		// com/ftsafe/javacardx/btcmgr/CoinManager.verifyPIN(B[BSS)S
+					sstore 4;
+				L3:	sload 4;
+					ifeq L7;
+				L4:	aload_0;
+					dup;
+					getfield_s 44;		// short tonwallet/PinHandler.numPinFails
+					sconst_1;
+					sadd;
+					putfield_s 44;		// short tonwallet/PinHandler.numPinFails
+					getfield_s_this 44;		// short tonwallet/PinHandler.numPinFails
+					bspush 10;
+					if_scmplt L6;
+				L5:	sspush 28424;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L6:	sspush 28423;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+					goto L8;
+				L7:	aload_0;
+					sconst_0;
+					putfield_s 44;		// short tonwallet/PinHandler.numPinFails
+				L8:	return;
+		}
+
+		.method public getNumPinFails()S 2 {
+			.stack 1;
+			.locals 0;
+
+				L0:	getfield_s_this 44;		// short tonwallet/PinHandler.numPinFails
+					sreturn;
+		}
+
+	}
+
+	.class public RecoveryDataHandler 9 extends 0.0 {		// extends java/lang/Object
+
+		.fields {
+			private byte[] recoveryData 0;		// [B
+			private byte[] recoveryDataHash 1;		// [B
+			private 3.11 md 2;		// Ljavacard/security/MessageDigest;
+			private short realRecoveryDataLen 3;		// S
+			private boolean isRecoveryDataSet 4;		// Z
+			public static final short RECOVERY_DATA_MAX_SIZE = 2048;		// S
+			public static final byte START_OF_TRANSMISSION = 0;		// B
+			public static final byte END_OF_TRANSMISSION = 2;		// B
+			private static RecoveryDataHandler recoveryDataHandler;		// Ltonwallet/RecoveryDataHandler;
+		}
+
+		.publicMethodTable 1 {
+			equals(Ljava/lang/Object;)Z;
+			addRecoveryDataPart(Ljavacard/framework/APDU;)V;
+			getRecoveryDataLen(Ljavacard/framework/APDU;)V;
+			getRecoveryDataPart(Ljavacard/framework/APDU;)V;
+			getHashOfRecoveryData(Ljavacard/framework/APDU;)V;
+			resetRecoveryData(Ljavacard/framework/APDU;)V;
+			resetRecoveryData()V;
+			isRecoveryDataSet(Ljavacard/framework/APDU;)V;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public static getInstance()Ltonwallet/RecoveryDataHandler; 0 {
+			.stack 2;
+			.locals 0;
+
+				L0:	getstatic_a 132;		// reference tonwallet/RecoveryDataHandler.recoveryDataHandler
+					ifnonnull L2;
+				L1:	new 133;		// tonwallet/RecoveryDataHandler
+					dup;
+					invokespecial 134;		// tonwallet/RecoveryDataHandler.<init>()V
+					putstatic_a 132;		// reference tonwallet/RecoveryDataHandler.recoveryDataHandler
+				L2:	getstatic_a 132;		// reference tonwallet/RecoveryDataHandler.recoveryDataHandler
+					areturn;
+		}
+
+		.method private <init>()V {
+			.stack 3;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 71;		// java/lang/Object.<init>()V
+					aload_0;
+					sconst_0;
+					putfield_s 46;		// short tonwallet/RecoveryDataHandler.realRecoveryDataLen
+					aload_0;
+					sconst_0;
+					putfield_b 47;		// boolean tonwallet/RecoveryDataHandler.isRecoveryDataSet
+					aload_0;
+					sspush 2048;
+					newarray 11;
+					putfield_a 48;		// reference tonwallet/RecoveryDataHandler.recoveryData
+					aload_0;
+					bspush 32;
+					newarray 11;
+					putfield_a 49;		// reference tonwallet/RecoveryDataHandler.recoveryDataHash
+					aload_0;
+					sconst_4;
+					sconst_0;
+					invokestatic 103;		// javacard/security/MessageDigest.getInstance(BZ)Ljavacard/security/MessageDigest;
+					putfield_a 50;		// reference tonwallet/RecoveryDataHandler.md
+					return;
+		}
+
+		.method public addRecoveryDataPart(Ljavacard/framework/APDU;)V 1 {
+			.stack 6;
+			.locals 5;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L1:	aload_2;
+					sconst_4;
+					baload;
+					sspush 255;
+					sand;
+					sstore_3;
+				L2:	aload_1;
+					invokevirtual 90;		// setIncomingAndReceive()S
+					sstore 4;
+				L3:	getfield_b_this 47;		// boolean tonwallet/RecoveryDataHandler.isRecoveryDataSet
+					ifeq L5;
+				L4:	sspush 28428;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L5:	aload_2;
+					sconst_2;
+					baload;
+					sstore 5;
+				L6:	sload 5;
+					ifne L8;
+				L7:	aload_0;
+					sconst_0;
+					putfield_s 46;		// short tonwallet/RecoveryDataHandler.realRecoveryDataLen
+				L8:	sload 5;
+					sconst_2;
+					if_scmpeq L13;
+				L9:	sload_3;
+					sload 4;
+					if_scmpne L11;
+				L10:	getfield_s_this 46;		// short tonwallet/RecoveryDataHandler.realRecoveryDataLen
+					s2i;
+					sload_3;
+					s2i;
+					iadd;
+					sipush 2048;
+					icmp;
+					ifle L12;
+				L11:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L12:	invokestatic 119;		// javacard/framework/JCSystem.beginTransaction()V
+					aload_2;
+					sconst_5;
+					getfield_a_this 48;		// reference tonwallet/RecoveryDataHandler.recoveryData
+					getfield_s_this 46;		// short tonwallet/RecoveryDataHandler.realRecoveryDataLen
+					sload_3;
+					invokestatic 125;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_0;
+					dup;
+					getfield_s 46;		// short tonwallet/RecoveryDataHandler.realRecoveryDataLen
+					sload_3;
+					sadd;
+					putfield_s 46;		// short tonwallet/RecoveryDataHandler.realRecoveryDataLen
+					invokestatic 120;		// javacard/framework/JCSystem.commitTransaction()V
+					goto L23;
+				L13:	sload_3;
+					sload 4;
+					if_scmpne L15;
+				L14:	sload_3;
+					bspush 32;
+					if_scmpeq L16;
+				L15:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L16:	getfield_a_this 50;		// reference tonwallet/RecoveryDataHandler.md
+					getfield_a_this 48;		// reference tonwallet/RecoveryDataHandler.recoveryData
+					sconst_0;
+					getfield_s_this 46;		// short tonwallet/RecoveryDataHandler.realRecoveryDataLen
+					getfield_a_this 49;		// reference tonwallet/RecoveryDataHandler.recoveryDataHash
+					sconst_0;
+					invokevirtual 136;		// doFinal([BSS[BS)S
+					pop;
+					aload_2;
+					sconst_5;
+					getfield_a_this 49;		// reference tonwallet/RecoveryDataHandler.recoveryDataHash
+					sconst_0;
+					bspush 32;
+					invokestatic 73;		// javacard/framework/Util.arrayCompare([BS[BSS)B
+					ifne L18;
+				L17:	sconst_1;
+					goto L19;
+				L18:	sconst_0;
+				L19:	sstore 6;
+				L20:	sload 6;
+					ifne L22;
+				L21:	aload_0;
+					invokevirtual 140;		// resetRecoveryData()V
+					sspush 28427;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L22:	aload_0;
+					sconst_1;
+					putfield_b 47;		// boolean tonwallet/RecoveryDataHandler.isRecoveryDataSet
+				L23:	return;
+		}
+
+		.method public getRecoveryDataLen(Ljavacard/framework/APDU;)V 2 {
+			.stack 3;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	getfield_b_this 47;		// boolean tonwallet/RecoveryDataHandler.isRecoveryDataSet
+					ifne L2;
+				L1:	sspush 28429;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L3:	aload_1;
+					invokevirtual 135;		// setOutgoing()S
+					sstore_3;
+				L4:	sload_3;
+					sconst_2;
+					if_scmpeq L6;
+				L5:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L6:	aload_1;
+					sconst_2;
+					invokevirtual 137;		// setOutgoingLength(S)V
+					aload_2;
+					sconst_0;
+					getfield_s_this 46;		// short tonwallet/RecoveryDataHandler.realRecoveryDataLen
+					invokestatic 93;		// javacard/framework/Util.setShort([BSS)S
+					pop;
+					aload_1;
+					sconst_0;
+					sconst_2;
+					invokevirtual 138;		// sendBytes(SS)V
+					return;
+		}
+
+		.method public getRecoveryDataPart(Ljavacard/framework/APDU;)V 3 {
+			.stack 4;
+			.locals 5;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	getfield_b_this 47;		// boolean tonwallet/RecoveryDataHandler.isRecoveryDataSet
+					ifne L2;
+				L1:	sspush 28429;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L3:	aload_2;
+					sconst_4;
+					baload;
+					sspush 255;
+					sand;
+					sstore_3;
+				L4:	aload_1;
+					invokevirtual 90;		// setIncomingAndReceive()S
+					sstore 4;
+				L5:	sload_3;
+					sload 4;
+					if_scmpne L7;
+				L6:	sload_3;
+					sconst_2;
+					if_scmpeq L8;
+				L7:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L8:	aload_2;
+					sconst_5;
+					invokestatic 92;		// javacard/framework/Util.getShort([BS)S
+					sstore 5;
+				L9:	aload_1;
+					invokevirtual 135;		// setOutgoing()S
+					sstore 6;
+				L10:	sload 5;
+					iflt L12;
+				L11:	sload 5;
+					s2i;
+					sload 6;
+					s2i;
+					iadd;
+					sipush 2048;
+					icmp;
+					ifle L13;
+				L12:	sspush 28426;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L13:	aload_1;
+					sload 6;
+					invokevirtual 137;		// setOutgoingLength(S)V
+					aload_1;
+					getfield_a_this 48;		// reference tonwallet/RecoveryDataHandler.recoveryData
+					sload 5;
+					sload 6;
+					invokevirtual 113;		// sendBytesLong([BSS)V
+					return;
+		}
+
+		.method public getHashOfRecoveryData(Ljavacard/framework/APDU;)V 4 {
+			.stack 6;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	getfield_b_this 47;		// boolean tonwallet/RecoveryDataHandler.isRecoveryDataSet
+					ifne L2;
+				L1:	sspush 28429;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L3:	aload_1;
+					invokevirtual 135;		// setOutgoing()S
+					sstore_3;
+				L4:	sload_3;
+					bspush 32;
+					if_scmpeq L6;
+				L5:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L6:	getfield_a_this 50;		// reference tonwallet/RecoveryDataHandler.md
+					getfield_a_this 48;		// reference tonwallet/RecoveryDataHandler.recoveryData
+					sconst_0;
+					getfield_s_this 46;		// short tonwallet/RecoveryDataHandler.realRecoveryDataLen
+					aload_2;
+					sconst_0;
+					invokevirtual 136;		// doFinal([BSS[BS)S
+					pop;
+					aload_1;
+					bspush 32;
+					invokevirtual 137;		// setOutgoingLength(S)V
+					aload_1;
+					sconst_0;
+					bspush 32;
+					invokevirtual 138;		// sendBytes(SS)V
+					return;
+		}
+
+		.method public resetRecoveryData(Ljavacard/framework/APDU;)V 5 {
+			.stack 1;
+			.locals 0;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_0;
+					invokevirtual 140;		// resetRecoveryData()V
+					return;
+		}
+
+		.method public resetRecoveryData()V 6 {
+			.stack 4;
+			.locals 0;
+
+				L0:	getfield_a_this 48;		// reference tonwallet/RecoveryDataHandler.recoveryData
+					sconst_0;
+					sspush 2048;
+					sconst_0;
+					invokestatic 83;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+					pop;
+					getfield_a_this 49;		// reference tonwallet/RecoveryDataHandler.recoveryDataHash
+					sconst_0;
+					bspush 32;
+					sconst_0;
+					invokestatic 83;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+					pop;
+					aload_0;
+					sconst_0;
+					putfield_s 46;		// short tonwallet/RecoveryDataHandler.realRecoveryDataLen
+					aload_0;
+					sconst_0;
+					putfield_b 47;		// boolean tonwallet/RecoveryDataHandler.isRecoveryDataSet
+					return;
+		}
+
+		.method public isRecoveryDataSet(Ljavacard/framework/APDU;)V 7 {
+			.stack 3;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L1:	aload_1;
+					invokevirtual 135;		// setOutgoing()S
+					sstore_3;
+				L2:	sload_3;
+					sconst_1;
+					if_scmpeq L4;
+				L3:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L4:	aload_2;
+					sconst_0;
+					getfield_b_this 47;		// boolean tonwallet/RecoveryDataHandler.isRecoveryDataSet
+					ifeq L6;
+				L5:	sconst_1;
+					goto L7;
+				L6:	sconst_0;
+				L7:	bastore;
+					aload_1;
+					sload_3;
+					invokevirtual 137;		// setOutgoingLength(S)V
+					aload_1;
+					sconst_0;
+					sload_3;
+					invokevirtual 138;		// sendBytes(SS)V
+					return;
+		}
+
+	}
+
+	.class public SaultHandler 10 extends 0.0 {		// extends java/lang/Object
+
+		.fields {
+			private byte[] sault 0;		// [B
+			private 3.14 rd 1;		// Ljavacard/security/RandomData;
+			private static SaultHandler saultHandler;		// Ltonwallet/SaultHandler;
+		}
+
+		.publicMethodTable 1 {
+			equals(Ljava/lang/Object;)Z;
+			compareSault([BS)Z;
+			getSault(Ljavacard/framework/APDU;)V;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public static getInstance()Ltonwallet/SaultHandler; 0 {
+			.stack 2;
+			.locals 0;
+
+				L0:	getstatic_a 141;		// reference tonwallet/SaultHandler.saultHandler
+					ifnonnull L2;
+				L1:	new 142;		// tonwallet/SaultHandler
+					dup;
+					invokespecial 143;		// tonwallet/SaultHandler.<init>()V
+					putstatic_a 141;		// reference tonwallet/SaultHandler.saultHandler
+				L2:	getstatic_a 141;		// reference tonwallet/SaultHandler.saultHandler
+					areturn;
+		}
+
+		.method private <init>()V {
+			.stack 2;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 71;		// java/lang/Object.<init>()V
+					aload_0;
+					bspush 32;
+					newarray 11;
+					putfield_a 51;		// reference tonwallet/SaultHandler.sault
+					aload_0;
+					sconst_2;
+					invokestatic 145;		// javacard/security/RandomData.getInstance(B)Ljavacard/security/RandomData;
+					putfield_a 52;		// reference tonwallet/SaultHandler.rd
+					aload_0;
+					invokespecial 147;		// tonwallet/SaultHandler.generateNewSault()V
+					return;
+		}
+
+		.method public compareSault([BS)Z 1 {
+			.stack 5;
+			.locals 1;
+
+				L0:	sload_2;
+					ifge L2;
+				L1:	sspush 20226;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	aload_1;
+					ifnull L4;
+				L3:	aload_1;
+					arraylength;
+					sload_2;
+					ssub;
+					getfield_a_this 51;		// reference tonwallet/SaultHandler.sault
+					arraylength;
+					if_scmpge L5;
+				L4:	sspush 20224;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L5:	getfield_a_this 51;		// reference tonwallet/SaultHandler.sault
+					sconst_0;
+					aload_1;
+					sload_2;
+					getfield_a_this 51;		// reference tonwallet/SaultHandler.sault
+					arraylength;
+					invokestatic 73;		// javacard/framework/Util.arrayCompare([BS[BSS)B
+					ifne L7;
+				L6:	sconst_1;
+					goto L8;
+				L7:	sconst_0;
+				L8:	sstore_3;
+				L9:	aload_0;
+					invokespecial 147;		// tonwallet/SaultHandler.generateNewSault()V
+					sload_3;
+					sreturn;
+		}
+
+		.method public getSault(Ljavacard/framework/APDU;)V 2 {
+			.stack 5;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L1:	aload_1;
+					invokevirtual 135;		// setOutgoing()S
+					sstore_3;
+				L2:	sload_3;
+					getfield_a_this 51;		// reference tonwallet/SaultHandler.sault
+					arraylength;
+					if_scmpeq L4;
+				L3:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L4:	getfield_a_this 51;		// reference tonwallet/SaultHandler.sault
+					sconst_0;
+					aload_2;
+					sconst_0;
+					bspush 32;
+					invokestatic 130;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+					pop;
+					aload_1;
+					getfield_a_this 51;		// reference tonwallet/SaultHandler.sault
+					arraylength;
+					invokevirtual 137;		// setOutgoingLength(S)V
+					aload_1;
+					sconst_0;
+					getfield_a_this 51;		// reference tonwallet/SaultHandler.sault
+					arraylength;
+					invokevirtual 138;		// sendBytes(SS)V
+					return;
+		}
+
+		.method private generateNewSault()V {
+			.stack 4;
+			.locals 0;
+
+				L0:	getfield_a_this 52;		// reference tonwallet/SaultHandler.rd
+					getfield_a_this 51;		// reference tonwallet/SaultHandler.sault
+					sconst_0;
+					getfield_a_this 51;		// reference tonwallet/SaultHandler.sault
+					arraylength;
+					invokevirtual 148;		// generateData([BSS)V
+					return;
+		}
+
+	}
+
+	.class public SerialNumberHandler 11 extends 0.0 {		// extends java/lang/Object
+
+		.fields {
+			private byte[] serialNumber 0;		// [B
+			private boolean isSerialNumberSet 1;		// Z
+			private static SerialNumberHandler serialSecretHandler;		// Ltonwallet/SerialNumberHandler;
+		}
+
+		.publicMethodTable 1 {
+			equals(Ljava/lang/Object;)Z;
+			isSerialNumberSet()Z;
+			setSerialNumber(Ljavacard/framework/APDU;)V;
+			getSerialNumber(Ljavacard/framework/APDU;)V;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public static getInstance()Ltonwallet/SerialNumberHandler; 0 {
+			.stack 2;
+			.locals 0;
+
+				L0:	getstatic_a 149;		// reference tonwallet/SerialNumberHandler.serialSecretHandler
+					ifnonnull L2;
+				L1:	new 150;		// tonwallet/SerialNumberHandler
+					dup;
+					invokespecial 151;		// tonwallet/SerialNumberHandler.<init>()V
+					putstatic_a 149;		// reference tonwallet/SerialNumberHandler.serialSecretHandler
+				L2:	getstatic_a 149;		// reference tonwallet/SerialNumberHandler.serialSecretHandler
+					areturn;
+		}
+
+		.method private <init>()V {
+			.stack 2;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 71;		// java/lang/Object.<init>()V
+					aload_0;
+					sconst_0;
+					putfield_b 53;		// boolean tonwallet/SerialNumberHandler.isSerialNumberSet
+					aload_0;
+					bspush 24;
+					newarray 11;
+					putfield_a 54;		// reference tonwallet/SerialNumberHandler.serialNumber
+					return;
+		}
+
+		.method public isSerialNumberSet()Z 1 {
+			.stack 1;
+			.locals 0;
+
+				L0:	getfield_b_this 53;		// boolean tonwallet/SerialNumberHandler.isSerialNumberSet
+					sreturn;
+		}
+
+		.method public setSerialNumber(Ljavacard/framework/APDU;)V 2 {
+			.stack 5;
+			.locals 4;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L1:	aload_2;
+					sconst_4;
+					baload;
+					sspush 255;
+					sand;
+					sstore_3;
+				L2:	aload_1;
+					invokevirtual 90;		// setIncomingAndReceive()S
+					sstore 4;
+				L3:	sload_3;
+					sload 4;
+					if_scmpne L5;
+				L4:	sload_3;
+					bspush 24;
+					if_scmpeq L6;
+				L5:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L6:	sconst_0;
+					sstore 5;
+				L7:	goto L12;
+				L8:	aload_2;
+					sconst_5;
+					sload 5;
+					sadd;
+					baload;
+					iflt L10;
+				L9:	aload_2;
+					sconst_5;
+					sload 5;
+					sadd;
+					baload;
+					bspush 9;
+					if_scmple L11;
+				L10:	sspush -24574;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L11:	sinc 5 1;
+				L12:	sload 5;
+					bspush 24;
+					if_scmplt L8;
+				L13:	aload_2;
+					sconst_5;
+					getfield_a_this 54;		// reference tonwallet/SerialNumberHandler.serialNumber
+					sconst_0;
+					bspush 24;
+					invokestatic 130;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+					pop;
+					aload_0;
+					sconst_1;
+					putfield_b 53;		// boolean tonwallet/SerialNumberHandler.isSerialNumberSet
+					return;
+		}
+
+		.method public getSerialNumber(Ljavacard/framework/APDU;)V 3 {
+			.stack 5;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	getfield_b_this 53;		// boolean tonwallet/SerialNumberHandler.isSerialNumberSet
+					ifne L2;
+				L1:	sspush -24575;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L3:	aload_1;
+					invokevirtual 135;		// setOutgoing()S
+					sstore_3;
+				L4:	sload_3;
+					bspush 24;
+					if_scmpeq L6;
+				L5:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L6:	getfield_a_this 54;		// reference tonwallet/SerialNumberHandler.serialNumber
+					sconst_0;
+					aload_2;
+					sconst_0;
+					bspush 24;
+					invokestatic 130;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+					pop;
+					aload_1;
+					bspush 24;
+					invokevirtual 137;		// setOutgoingLength(S)V
+					aload_1;
+					sconst_0;
+					bspush 24;
+					invokevirtual 138;		// sendBytes(SS)V
+					return;
+		}
+
+	}
+
+	.class public TonCryptoHandler 12 extends 0.0 {		// extends java/lang/Object
+
+		.fields {
+			private byte[] tmpBuffer 0;		// [B
+			private byte[] pathBuffer 1;		// [B
+			private ApduDataProtectionHandler apduDataProtectionHandler 2;		// Ltonwallet/ApduDataProtectionHandler;
+			private PinHandler pinHandler 3;		// Ltonwallet/PinHandler;
+			public static final short PATH_BUFFER_MAX_SIZE = 50;		// S
+			public static final short TMP_BUFFER_SIZE = 512;		// S
+			public static final short TON_PUBLIC_KEY_SIZE = 32;		// S
+			public static final short CHAIN_CODE_KEY_SIZE = 32;		// S
+			public static final short TON_CHAIN_CODE_CONSTANT = 65;		// S
+			public static final short KEY_SIZE = 32;		// S
+			public static final short SIGNATURE_SIZE = 64;		// S
+			public static final short PK_OFFSET = 1;		// S
+			public static final short SIG_OFFSET = 1;		// S
+			public static final short PATH_OFFSET = 1;		// S
+			private static final byte[] HD_PATH_PREFIX = {109,47,52,52,39,47,51,57,54,39,47,48,39,47,48,39,47};		// [B
+			private static final byte HD_PATH_SUFFIX = 39;		// B
+			private static final byte[] ROOT_HD_PATH = {109,47,52,52,39,47,51,57,54,39,47,48,39,47,48,39,47,48,39};		// [B
+			private static final byte[] ROOT_HD_PATH_IN_LV = {19,109,47,52,52,39,47,51,57,54,39,47,48,39,47,48,39,47,48,39};		// [B
+			private static TonCryptoHandler tonCryptoHandler;		// Ltonwallet/TonCryptoHandler;
+		}
+
+		.publicMethodTable 1 {
+			equals(Ljava/lang/Object;)Z;
+			getPublicKey(Ljavacard/framework/APDU;)V;
+			getPublicKeyWithDefaultHDPath(Ljavacard/framework/APDU;)V;
+			signShortMessage(Ljavacard/framework/APDU;)V;
+			signShortMessageWithDefaultPath(Ljavacard/framework/APDU;)V;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public static getInstance()Ltonwallet/TonCryptoHandler; 0 {
+			.stack 2;
+			.locals 0;
+
+				L0:	getstatic_a 154;		// reference tonwallet/TonCryptoHandler.tonCryptoHandler
+					ifnonnull L2;
+				L1:	new 155;		// tonwallet/TonCryptoHandler
+					dup;
+					invokespecial 156;		// tonwallet/TonCryptoHandler.<init>()V
+					putstatic_a 154;		// reference tonwallet/TonCryptoHandler.tonCryptoHandler
+				L2:	getstatic_a 154;		// reference tonwallet/TonCryptoHandler.tonCryptoHandler
+					areturn;
+		}
+
+		.method private <init>()V {
+			.stack 5;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 71;		// java/lang/Object.<init>()V
+				L1:	aload_0;
+					sspush 512;
+					sconst_2;
+					invokestatic 98;		// javacard/framework/JCSystem.makeTransientByteArray(SB)[B
+					putfield_a 55;		// reference tonwallet/TonCryptoHandler.tmpBuffer
+				L2:	goto L4;
+				L3:	pop;
+					aload_0;
+					sspush 512;
+					newarray 11;
+					putfield_a 55;		// reference tonwallet/TonCryptoHandler.tmpBuffer
+				L4:	aload_0;
+					bspush 50;
+					newarray 11;
+					putfield_a 56;		// reference tonwallet/TonCryptoHandler.pathBuffer
+					getstatic_a 159;		// reference tonwallet/TonCryptoHandler.HD_PATH_PREFIX
+					sconst_0;
+					getfield_a_this 56;		// reference tonwallet/TonCryptoHandler.pathBuffer
+					sconst_1;
+					getstatic_a 159;		// reference tonwallet/TonCryptoHandler.HD_PATH_PREFIX
+					arraylength;
+					invokestatic 130;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+					pop;
+					aload_0;
+					invokestatic 116;		// tonwallet/ApduDataProtectionHandler.getInstance()Ltonwallet/ApduDataProtectionHandler;
+					putfield_a 57;		// reference tonwallet/TonCryptoHandler.apduDataProtectionHandler
+					aload_0;
+					invokestatic 161;		// tonwallet/PinHandler.getInstance()Ltonwallet/PinHandler;
+					putfield_a 58;		// reference tonwallet/TonCryptoHandler.pinHandler
+					return;
+			.exceptionTable {
+				// start_block end_block handler_block catch_type_index
+				L1 L2 L3 115;
+			}
+		}
+
+		.method public getPublicKey(Ljavacard/framework/APDU;)V 1 {
+			.stack 7;
+			.locals 7;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	getfield_a_this 58;		// reference tonwallet/TonCryptoHandler.pinHandler
+					invokevirtual 163;		// getNumPinFails()S
+					bspush 10;
+					if_scmplt L2;
+				L1:	sspush 28424;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L3:	aload_2;
+					sconst_4;
+					baload;
+					sspush 255;
+					sand;
+					sstore_3;
+				L4:	aload_1;
+					invokevirtual 90;		// setIncomingAndReceive()S
+					sstore 4;
+				L5:	sload_3;
+					sload 4;
+					if_scmpne L7;
+				L6:	sload_3;
+					bspush 10;
+					if_scmple L8;
+				L7:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L8:	aload_2;
+					sconst_5;
+					getfield_a_this 56;		// reference tonwallet/TonCryptoHandler.pathBuffer
+					sconst_1;
+					getstatic_a 159;		// reference tonwallet/TonCryptoHandler.HD_PATH_PREFIX
+					arraylength;
+					sadd;
+					sload_3;
+					invokestatic 130;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+					pop;
+					sconst_1;
+					getstatic_a 159;		// reference tonwallet/TonCryptoHandler.HD_PATH_PREFIX
+					arraylength;
+					sadd;
+					sload_3;
+					sadd;
+					sstore 5;
+				L9:	getfield_a_this 56;		// reference tonwallet/TonCryptoHandler.pathBuffer
+					sload 5;
+					bspush 39;
+					bastore;
+					sload 5;
+					sstore 6;
+				L10:	aload_1;
+					invokevirtual 135;		// setOutgoing()S
+					sstore 7;
+				L11:	sload 7;
+					bspush 32;
+					if_scmpeq L13;
+				L12:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L13:	getfield_a_this 56;		// reference tonwallet/TonCryptoHandler.pathBuffer
+					sconst_1;
+					sload 6;
+					aload_2;
+					sconst_0;
+					aload_2;
+					bspush 65;
+					invokestatic 164;		// com/ftsafe/javacardx/btcmgr/CoinManager.getCoinPubData([BSS[BS[BS)S
+					sstore 8;
+				L14:	sload 8;
+					ifeq L16;
+				L15:	sspush 28419;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L16:	aload_1;
+					bspush 32;
+					invokevirtual 137;		// setOutgoingLength(S)V
+					aload_1;
+					sconst_1;
+					bspush 32;
+					invokevirtual 138;		// sendBytes(SS)V
+					return;
+		}
+
+		.method public getPublicKeyWithDefaultHDPath(Ljavacard/framework/APDU;)V 2 {
+			.stack 7;
+			.locals 3;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	getfield_a_this 58;		// reference tonwallet/TonCryptoHandler.pinHandler
+					invokevirtual 163;		// getNumPinFails()S
+					bspush 10;
+					if_scmplt L2;
+				L1:	sspush 28424;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L3:	aload_1;
+					invokevirtual 135;		// setOutgoing()S
+					sstore_3;
+				L4:	sload_3;
+					bspush 32;
+					if_scmpeq L6;
+				L5:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L6:	getstatic_a 165;		// reference tonwallet/TonCryptoHandler.ROOT_HD_PATH
+					sconst_0;
+					getstatic_a 165;		// reference tonwallet/TonCryptoHandler.ROOT_HD_PATH
+					arraylength;
+					aload_2;
+					sconst_0;
+					aload_2;
+					bspush 65;
+					invokestatic 164;		// com/ftsafe/javacardx/btcmgr/CoinManager.getCoinPubData([BSS[BS[BS)S
+					sstore 4;
+				L7:	sload 4;
+					ifeq L9;
+				L8:	sspush 28419;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L9:	aload_1;
+					bspush 32;
+					invokevirtual 137;		// setOutgoingLength(S)V
+					aload_1;
+					sconst_1;
+					bspush 32;
+					invokevirtual 138;		// sendBytes(SS)V
+					return;
+		}
+
+		.method public signShortMessage(Ljavacard/framework/APDU;)V 3 {
+			.stack 10;
+			.locals 11;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L1:	getfield_a_this 57;		// reference tonwallet/TonCryptoHandler.apduDataProtectionHandler
+					aload_1;
+					invokevirtual 166;		// verifyInputApduDataContainingDataForSigningAndPath(Ljavacard/framework/APDU;)[B
+					astore_3;
+				L2:	sconst_5;
+					sstore 4;
+				L3:	aload_3;
+					sconst_0;
+					invokestatic 92;		// javacard/framework/Util.getShort([BS)S
+					sconst_2;
+					sadd;
+					sstore 5;
+				L4:	sload 4;
+					sload 5;
+					sadd;
+					sstore 6;
+				L5:	aload_3;
+					sconst_2;
+					baload;
+					sstore 7;
+				L6:	sload 6;
+					sconst_1;
+					sadd;
+					sstore 8;
+				L7:	aload_2;
+					sload 8;
+					getfield_a_this 56;		// reference tonwallet/TonCryptoHandler.pathBuffer
+					sconst_1;
+					getstatic_a 159;		// reference tonwallet/TonCryptoHandler.HD_PATH_PREFIX
+					arraylength;
+					sadd;
+					sload 7;
+					invokestatic 130;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+					pop;
+					sconst_1;
+					getstatic_a 159;		// reference tonwallet/TonCryptoHandler.HD_PATH_PREFIX
+					arraylength;
+					sadd;
+					sload 7;
+					sadd;
+					sstore 9;
+				L8:	getfield_a_this 56;		// reference tonwallet/TonCryptoHandler.pathBuffer
+					sload 9;
+					bspush 39;
+					bastore;
+					sload 9;
+					sstore 10;
+				L9:	getfield_a_this 56;		// reference tonwallet/TonCryptoHandler.pathBuffer
+					sconst_0;
+					sload 10;
+					s2b;
+					bastore;
+					aload_1;
+					invokevirtual 135;		// setOutgoing()S
+					sstore 11;
+				L10:	sload 11;
+					bspush 64;
+					if_scmpeq L12;
+				L11:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L12:	sconst_1;
+					aload_2;
+					sload 4;
+					sload 5;
+					getfield_a_this 55;		// reference tonwallet/TonCryptoHandler.tmpBuffer
+					sconst_0;
+					getfield_a_this 56;		// reference tonwallet/TonCryptoHandler.pathBuffer
+					sconst_0;
+					sload 10;
+					sconst_1;
+					sadd;
+					invokestatic 167;		// com/ftsafe/javacardx/btcmgr/CoinManager.signCoinDataED25519(S[BSS[BS[BSS)S
+					sstore 12;
+				L13:	sload 12;
+					ifeq L15;
+				L14:	sspush 28420;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L15:	aload_1;
+					bspush 64;
+					invokevirtual 137;		// setOutgoingLength(S)V
+					aload_1;
+					getfield_a_this 55;		// reference tonwallet/TonCryptoHandler.tmpBuffer
+					sconst_1;
+					bspush 64;
+					invokevirtual 113;		// sendBytesLong([BSS)V
+					return;
+		}
+
+		.method public signShortMessageWithDefaultPath(Ljavacard/framework/APDU;)V 4 {
+			.stack 9;
+			.locals 5;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L1:	sconst_5;
+					sstore_3;
+				L2:	getfield_a_this 57;		// reference tonwallet/TonCryptoHandler.apduDataProtectionHandler
+					aload_1;
+					invokevirtual 168;		// verifyInputApduDataContainingDataForSigning(Ljavacard/framework/APDU;)S
+					sconst_2;
+					sadd;
+					sstore 4;
+				L3:	aload_1;
+					invokevirtual 135;		// setOutgoing()S
+					sstore 5;
+				L4:	sload 5;
+					bspush 64;
+					if_scmpeq L6;
+				L5:	sspush 26368;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L6:	sconst_1;
+					aload_2;
+					sload_3;
+					sload 4;
+					getfield_a_this 55;		// reference tonwallet/TonCryptoHandler.tmpBuffer
+					sconst_0;
+					getstatic_a 169;		// reference tonwallet/TonCryptoHandler.ROOT_HD_PATH_IN_LV
+					sconst_0;
+					getstatic_a 169;		// reference tonwallet/TonCryptoHandler.ROOT_HD_PATH_IN_LV
+					arraylength;
+					invokestatic 167;		// com/ftsafe/javacardx/btcmgr/CoinManager.signCoinDataED25519(S[BSS[BS[BSS)S
+					sstore 6;
+				L7:	sload 6;
+					ifeq L9;
+				L8:	sspush 28420;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L9:	aload_1;
+					bspush 64;
+					invokevirtual 137;		// setOutgoingLength(S)V
+					aload_1;
+					getfield_a_this 55;		// reference tonwallet/TonCryptoHandler.tmpBuffer
+					sconst_1;
+					bspush 64;
+					invokevirtual 113;		// sendBytesLong([BSS)V
+					return;
+		}
+
+	}
+
+	.class public TonWalletApplet 13 extends 1.3 {		// extends javacard/framework/Applet
+
+		.fields {
+			private TonCryptoHandler cryptoHandler 0;		// Ltonwallet/TonCryptoHandler;
+			private KeyChain keyChain 1;		// Ltonwallet/KeyChain;
+			private CardAuthenticationHandler cardAuthenticationHandler 2;		// Ltonwallet/CardAuthenticationHandler;
+			private PinHandler pinHandler 3;		// Ltonwallet/PinHandler;
+			private CommonHandler commonHandler 4;		// Ltonwallet/CommonHandler;
+			private CommonSecretHandler commonSecretHandler 5;		// Ltonwallet/CommonSecretHandler;
+			private RecoveryDataHandler recoveryDataHandler 6;		// Ltonwallet/RecoveryDataHandler;
+			private SerialNumberHandler serialNumberHandler 7;		// Ltonwallet/SerialNumberHandler;
+			private static final byte WALLET_APPLET_CLA = -80;		// B
+			private static final byte INS_FINISH_PERS = -112;		// B
+			private static final byte INS_SET_ENCRYPTED_PASSWORD_FOR_CARD_AUTHENTICATION = -111;		// B
+			private static final byte INS_SET_ENCRYPTED_COMMON_SECRET = -108;		// B
+			private static final byte INS_SET_SERIAL_NUMBER = -106;		// B
+			private static final byte INS_VERIFY_PASSWORD = -110;		// B
+			private static final byte INS_GET_HASH_OF_ENCRYPTED_PASSWORD = -109;		// B
+			private static final byte INS_GET_HASH_OF_ENCRYPTED_COMMON_SECRET = -107;		// B
+			private static final byte INS_GET_PUBLIC_KEY = -96;		// B
+			private static final byte INS_GET_PUBLIC_KEY_WITH_DEFAULT_HD_PATH = -89;		// B
+			private static final byte INS_VERIFY_PIN = -94;		// B
+			private static final byte INS_SIGN_SHORT_MESSAGE = -93;		// B
+			private static final byte INS_SIGN_SHORT_MESSAGE_WITH_DEFAULT_PATH = -91;		// B
+			private static final byte INS_CHECK_KEY_HMAC_CONSISTENCY = -80;		// B
+			private static final byte INS_GET_KEY_INDEX_IN_STORAGE_AND_LEN = -79;		// B
+			private static final byte INS_GET_KEY_CHUNK = -78;		// B
+			private static final byte INS_CHECK_AVAILABLE_VOL_FOR_NEW_KEY = -77;		// B
+			private static final byte INS_ADD_KEY_CHUNK = -76;		// B
+			private static final byte INS_INITIATE_CHANGE_OF_KEY = -75;		// B
+			private static final byte INS_CHANGE_KEY_CHUNK = -74;		// B
+			private static final byte INS_INITIATE_DELETE_KEY = -73;		// B
+			private static final byte INS_GET_NUMBER_OF_KEYS = -72;		// B
+			private static final byte INS_GET_FREE_STORAGE_SIZE = -71;		// B
+			private static final byte INS_GET_OCCUPIED_STORAGE_SIZE = -70;		// B
+			private static final byte INS_GET_HMAC = -69;		// B
+			private static final byte INS_RESET_KEYCHAIN = -68;		// B
+			private static final byte INS_DELETE_KEY_CHUNK = -66;		// B
+			private static final byte INS_DELETE_KEY_RECORD = -65;		// B
+			private static final byte INS_GET_DELETE_KEY_CHUNK_NUM_OF_PACKETS = -31;		// B
+			private static final byte INS_GET_DELETE_KEY_RECORD_NUM_OF_PACKETS = -30;		// B
+			private static final byte INS_GET_DELETE_KEY_CHUNK_COUNTER = -29;		// B
+			private static final byte INS_GET_DELETE_KEY_RECORD_COUNTER = -28;		// B
+			private static final byte INS_GET_SAULT = -67;		// B
+			private static final byte INS_GET_APP_INFO = -63;		// B
+			private static final byte INS_GET_SERIAL_NUMBER = -62;		// B
+			private static final byte INS_ADD_RECOVERY_DATA_PART = -47;		// B
+			private static final byte INS_GET_RECOVERY_DATA_PART = -46;		// B
+			private static final byte INS_GET_RECOVERY_DATA_HASH = -45;		// B
+			private static final byte INS_GET_RECOVERY_DATA_LEN = -44;		// B
+			private static final byte INS_RESET_RECOVERY_DATA = -43;		// B
+			private static final byte INS_IS_RECOVERY_DATA_SET = -42;		// B
+		}
+
+		.publicMethodTable 7 {
+			equals(Ljava/lang/Object;)Z;
+			register()V;
+			register([BSB)V;
+			selectingApplet()Z;
+			deselect()V;
+			getShareableInterfaceObject(Ljavacard/framework/AID;B)Ljavacard/framework/Shareable;;
+			select()Z;
+			process(Ljavacard/framework/APDU;)V;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public <init>()V 0 {
+			.stack 2;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 170;		// javacard/framework/Applet.<init>()V
+					aload_0;
+					invokestatic 171;		// tonwallet/TonCryptoHandler.getInstance()Ltonwallet/TonCryptoHandler;
+					putfield_a 59;		// reference tonwallet/TonWalletApplet.cryptoHandler
+					aload_0;
+					invokestatic 173;		// tonwallet/KeyChain.getInstance()Ltonwallet/KeyChain;
+					putfield_a 60;		// reference tonwallet/TonWalletApplet.keyChain
+					aload_0;
+					invokestatic 162;		// tonwallet/CardAuthenticationHandler.getInstance()Ltonwallet/CardAuthenticationHandler;
+					putfield_a 61;		// reference tonwallet/TonWalletApplet.cardAuthenticationHandler
+					aload_0;
+					invokestatic 161;		// tonwallet/PinHandler.getInstance()Ltonwallet/PinHandler;
+					putfield_a 62;		// reference tonwallet/TonWalletApplet.pinHandler
+					aload_0;
+					invokestatic 177;		// tonwallet/CommonHandler.getInstance()Ltonwallet/CommonHandler;
+					putfield_a 63;		// reference tonwallet/TonWalletApplet.commonHandler
+					aload_0;
+					invokestatic 118;		// tonwallet/CommonSecretHandler.getInstance()Ltonwallet/CommonSecretHandler;
+					putfield_a 64;		// reference tonwallet/TonWalletApplet.commonSecretHandler
+					aload_0;
+					invokestatic 180;		// tonwallet/RecoveryDataHandler.getInstance()Ltonwallet/RecoveryDataHandler;
+					putfield_a 65;		// reference tonwallet/TonWalletApplet.recoveryDataHandler
+					aload_0;
+					invokestatic 157;		// tonwallet/SerialNumberHandler.getInstance()Ltonwallet/SerialNumberHandler;
+					putfield_a 66;		// reference tonwallet/TonWalletApplet.serialNumberHandler
+					return;
+		}
+
+		.method public static install([BSB)V 1 {
+			.stack 5;
+			.locals 0;
+
+				L0:	new 183;		// tonwallet/TonWalletApplet
+					dup;
+					invokespecial 184;		// tonwallet/TonWalletApplet.<init>()V
+					aload_0;
+					sload_1;
+					sconst_1;
+					sadd;
+					aload_0;
+					sload_1;
+					baload;
+					invokevirtual 185;		// register([BSB)V
+					return;
+		}
+
+		.method public process(Ljavacard/framework/APDU;)V 7 {
+			.stack 2;
+			.locals 3;
+
+			.descriptor	Ljavacard/framework/APDU;	1.10;
+
+				L0:	aload_0;
+					invokevirtual 186;		// selectingApplet()Z
+					ifeq L5;
+				L1:	sconst_2;
+					invokestatic 187;		// com/ftsafe/javacardx/btcmgr/CoinManager.setCurve(B)S
+					sstore_2;
+				L2:	sload_2;
+					sspush -21931;
+					if_scmpeq L4;
+				L3:	sspush 28418;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L4:	return;
+				L5:	aload_1;
+					invokevirtual 79;		// getBuffer()[B
+					astore_2;
+				L6:	aload_2;
+					sconst_0;
+					baload;
+					sspush 255;
+					sand;
+					s2b;
+					sstore_3;
+				L7:	aload_2;
+					sconst_1;
+					baload;
+					sspush 255;
+					sand;
+					s2b;
+					sstore 4;
+				L8:	sload_3;
+					ifne L11;
+				L9:	sload 4;
+					bspush -92;
+					if_scmpne L11;
+				L10:	return;
+				L11:	sload_3;
+					bspush -80;
+					if_scmpeq L13;
+				L12:	sspush 28160;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L13:	invokestatic 182;		// org/globalplatform/GPSystem.getCardContentState()B
+					slookupswitch L94 5 7 L14 23 L35 39 L24 55 L64 71 L31;
+				L14:	sload 4;
+					slookupswitch L23 8 -112 L22 -111 L16 -109 L17 -108 L18 -107 L19 -106 L20 -63 L15 -62 L21;
+				L15:	getfield_a_this 63;		// reference tonwallet/TonWalletApplet.commonHandler
+					aload_1;
+					invokevirtual 188;		// getAppInfo(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L16:	getfield_a_this 61;		// reference tonwallet/TonWalletApplet.cardAuthenticationHandler
+					aload_1;
+					invokevirtual 189;		// setEncryptedPassword(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L17:	getfield_a_this 61;		// reference tonwallet/TonWalletApplet.cardAuthenticationHandler
+					aload_1;
+					invokevirtual 190;		// getHashOfEncryptedPassword(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L18:	getfield_a_this 64;		// reference tonwallet/TonWalletApplet.commonSecretHandler
+					aload_1;
+					invokevirtual 191;		// setEncryptedCommonSecret(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L19:	getfield_a_this 64;		// reference tonwallet/TonWalletApplet.commonSecretHandler
+					aload_1;
+					invokevirtual 192;		// getHashOfEncryptedCommonSecret(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L20:	getfield_a_this 66;		// reference tonwallet/TonWalletApplet.serialNumberHandler
+					aload_1;
+					invokevirtual 193;		// setSerialNumber(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L21:	getfield_a_this 66;		// reference tonwallet/TonWalletApplet.serialNumberHandler
+					aload_1;
+					invokevirtual 194;		// getSerialNumber(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L22:	getfield_a_this 63;		// reference tonwallet/TonWalletApplet.commonHandler
+					aload_1;
+					invokevirtual 195;		// finishPers(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L23:	sspush 27904;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+					goto_w L95;
+				L24:	sload 4;
+					slookupswitch L30 5 -110 L29 -109 L26 -107 L27 -63 L25 -62 L28;
+				L25:	getfield_a_this 63;		// reference tonwallet/TonWalletApplet.commonHandler
+					aload_1;
+					invokevirtual 188;		// getAppInfo(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L26:	getfield_a_this 61;		// reference tonwallet/TonWalletApplet.cardAuthenticationHandler
+					aload_1;
+					invokevirtual 190;		// getHashOfEncryptedPassword(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L27:	getfield_a_this 64;		// reference tonwallet/TonWalletApplet.commonSecretHandler
+					aload_1;
+					invokevirtual 192;		// getHashOfEncryptedCommonSecret(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L28:	getfield_a_this 66;		// reference tonwallet/TonWalletApplet.serialNumberHandler
+					aload_1;
+					invokevirtual 194;		// getSerialNumber(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L29:	getfield_a_this 61;		// reference tonwallet/TonWalletApplet.cardAuthenticationHandler
+					aload_1;
+					invokevirtual 196;		// verifyPassword(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L30:	sspush 27904;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+					goto_w L95;
+				L31:	sload 4;
+					stableswitch L34 -63 -62 L32 L33;
+				L32:	getfield_a_this 63;		// reference tonwallet/TonWalletApplet.commonHandler
+					aload_1;
+					invokevirtual 188;		// getAppInfo(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L33:	getfield_a_this 66;		// reference tonwallet/TonWalletApplet.serialNumberHandler
+					aload_1;
+					invokevirtual 194;		// getSerialNumber(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L34:	sspush 27904;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+					goto_w L95;
+				L35:	sload 4;
+					stableswitch L63 -96 -42 L50 L63 L54 L52 L63 L53 L63 L51 L63 L63 L63 L63 L63 L63 L63 L63 L48 L36 L37 L38 L39 L40 L41 L42 L43 L44 L45 L46 L47 L49 L63 L63 L63 L62 L61 L63 L63 L63 L63 L63 L63 L63 L63 L63 L63 L63 L63 L63 L63 L55 L56 L58 L59 L57 L60;
+				L36:	getfield_a_this 60;		// reference tonwallet/TonWalletApplet.keyChain
+					aload_1;
+					invokevirtual 197;		// getKeyIndexInStorageAndLen(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L37:	getfield_a_this 60;		// reference tonwallet/TonWalletApplet.keyChain
+					aload_1;
+					invokevirtual 198;		// getKeyChunk(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L38:	getfield_a_this 60;		// reference tonwallet/TonWalletApplet.keyChain
+					aload_1;
+					invokevirtual 199;		// checkAvailabilityOfStorageFreeVolumeForNewKey(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L39:	getfield_a_this 60;		// reference tonwallet/TonWalletApplet.keyChain
+					aload_1;
+					invokevirtual 200;		// addKeyChunk(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L40:	getfield_a_this 60;		// reference tonwallet/TonWalletApplet.keyChain
+					aload_1;
+					invokevirtual 201;		// initiateChangeOfKey(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L41:	getfield_a_this 60;		// reference tonwallet/TonWalletApplet.keyChain
+					aload_1;
+					invokevirtual 202;		// changeKeyChunk(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L42:	getfield_a_this 60;		// reference tonwallet/TonWalletApplet.keyChain
+					aload_1;
+					invokevirtual 203;		// initiateDeleteOfKey(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L43:	getfield_a_this 60;		// reference tonwallet/TonWalletApplet.keyChain
+					aload_1;
+					invokevirtual 204;		// getNumberOfKeys(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L44:	getfield_a_this 60;		// reference tonwallet/TonWalletApplet.keyChain
+					aload_1;
+					invokevirtual 205;		// getFreeStorageSize(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L45:	getfield_a_this 60;		// reference tonwallet/TonWalletApplet.keyChain
+					aload_1;
+					invokevirtual 206;		// getOccupiedStorageSize(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L46:	getfield_a_this 60;		// reference tonwallet/TonWalletApplet.keyChain
+					aload_1;
+					invokevirtual 207;		// getHmac(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L47:	getfield_a_this 60;		// reference tonwallet/TonWalletApplet.keyChain
+					aload_1;
+					invokevirtual 208;		// reset(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L48:	getfield_a_this 60;		// reference tonwallet/TonWalletApplet.keyChain
+					aload_1;
+					invokevirtual 209;		// checkKeyHmacConsistency(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L49:	invokestatic 81;		// tonwallet/SaultHandler.getInstance()Ltonwallet/SaultHandler;
+					aload_1;
+					invokevirtual 210;		// getSault(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L50:	getfield_a_this 59;		// reference tonwallet/TonWalletApplet.cryptoHandler
+					aload_1;
+					invokevirtual 211;		// getPublicKey(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L51:	getfield_a_this 59;		// reference tonwallet/TonWalletApplet.cryptoHandler
+					aload_1;
+					invokevirtual 212;		// getPublicKeyWithDefaultHDPath(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L52:	getfield_a_this 59;		// reference tonwallet/TonWalletApplet.cryptoHandler
+					aload_1;
+					invokevirtual 213;		// signShortMessage(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L53:	getfield_a_this 59;		// reference tonwallet/TonWalletApplet.cryptoHandler
+					aload_1;
+					invokevirtual 214;		// signShortMessageWithDefaultPath(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L54:	getfield_a_this 62;		// reference tonwallet/TonWalletApplet.pinHandler
+					aload_1;
+					invokevirtual 215;		// checkPin(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L55:	getfield_a_this 65;		// reference tonwallet/TonWalletApplet.recoveryDataHandler
+					aload_1;
+					invokevirtual 216;		// addRecoveryDataPart(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L56:	getfield_a_this 65;		// reference tonwallet/TonWalletApplet.recoveryDataHandler
+					aload_1;
+					invokevirtual 217;		// getRecoveryDataPart(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L57:	getfield_a_this 65;		// reference tonwallet/TonWalletApplet.recoveryDataHandler
+					aload_1;
+					invokevirtual 218;		// resetRecoveryData(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L58:	getfield_a_this 65;		// reference tonwallet/TonWalletApplet.recoveryDataHandler
+					aload_1;
+					invokevirtual 219;		// getHashOfRecoveryData(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L59:	getfield_a_this 65;		// reference tonwallet/TonWalletApplet.recoveryDataHandler
+					aload_1;
+					invokevirtual 220;		// getRecoveryDataLen(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L60:	getfield_a_this 65;		// reference tonwallet/TonWalletApplet.recoveryDataHandler
+					aload_1;
+					invokevirtual 221;		// isRecoveryDataSet(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L61:	getfield_a_this 66;		// reference tonwallet/TonWalletApplet.serialNumberHandler
+					aload_1;
+					invokevirtual 194;		// getSerialNumber(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L62:	getfield_a_this 63;		// reference tonwallet/TonWalletApplet.commonHandler
+					aload_1;
+					invokevirtual 188;		// getAppInfo(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L63:	sspush 27904;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+					goto_w L95;
+				L64:	sload 4;
+					stableswitch L93 -96 -28 L80 L93 L84 L82 L93 L83 L93 L81 L93 L93 L93 L93 L93 L93 L93 L93 L78 L65 L66 L93 L93 L93 L93 L93 L73 L74 L75 L76 L77 L79 L71 L72 L93 L92 L91 L93 L93 L93 L93 L93 L93 L93 L93 L93 L93 L93 L93 L93 L93 L85 L86 L88 L89 L87 L90 L93 L93 L93 L93 L93 L93 L93 L93 L93 L93 L69 L70 L67 L68;
+				L65:	getfield_a_this 60;		// reference tonwallet/TonWalletApplet.keyChain
+					aload_1;
+					invokevirtual 197;		// getKeyIndexInStorageAndLen(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L66:	getfield_a_this 60;		// reference tonwallet/TonWalletApplet.keyChain
+					aload_1;
+					invokevirtual 198;		// getKeyChunk(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L67:	getfield_a_this 60;		// reference tonwallet/TonWalletApplet.keyChain
+					aload_1;
+					invokevirtual 222;		// getDeleteKeyChunkCounter(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L68:	getfield_a_this 60;		// reference tonwallet/TonWalletApplet.keyChain
+					aload_1;
+					invokevirtual 223;		// getDeleteKeyRecordCounter(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L69:	getfield_a_this 60;		// reference tonwallet/TonWalletApplet.keyChain
+					aload_1;
+					invokevirtual 224;		// getDeleteKeyChunkNumOfPackets(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L70:	getfield_a_this 60;		// reference tonwallet/TonWalletApplet.keyChain
+					aload_1;
+					invokevirtual 225;		// getDeleteKeyRecordNumOfPackets(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L71:	getfield_a_this 60;		// reference tonwallet/TonWalletApplet.keyChain
+					aload_1;
+					invokevirtual 226;		// deleteKeyChunk(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L72:	getfield_a_this 60;		// reference tonwallet/TonWalletApplet.keyChain
+					aload_1;
+					invokevirtual 227;		// deleteKeyRecord(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L73:	getfield_a_this 60;		// reference tonwallet/TonWalletApplet.keyChain
+					aload_1;
+					invokevirtual 204;		// getNumberOfKeys(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L74:	getfield_a_this 60;		// reference tonwallet/TonWalletApplet.keyChain
+					aload_1;
+					invokevirtual 205;		// getFreeStorageSize(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L75:	getfield_a_this 60;		// reference tonwallet/TonWalletApplet.keyChain
+					aload_1;
+					invokevirtual 206;		// getOccupiedStorageSize(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L76:	getfield_a_this 60;		// reference tonwallet/TonWalletApplet.keyChain
+					aload_1;
+					invokevirtual 207;		// getHmac(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L77:	getfield_a_this 60;		// reference tonwallet/TonWalletApplet.keyChain
+					aload_1;
+					invokevirtual 208;		// reset(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L78:	getfield_a_this 60;		// reference tonwallet/TonWalletApplet.keyChain
+					aload_1;
+					invokevirtual 209;		// checkKeyHmacConsistency(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L79:	invokestatic 81;		// tonwallet/SaultHandler.getInstance()Ltonwallet/SaultHandler;
+					aload_1;
+					invokevirtual 210;		// getSault(Ljavacard/framework/APDU;)V
+					goto_w L95;
+				L80:	getfield_a_this 59;		// reference tonwallet/TonWalletApplet.cryptoHandler
+					aload_1;
+					invokevirtual 211;		// getPublicKey(Ljavacard/framework/APDU;)V
+					goto L95;
+				L81:	getfield_a_this 59;		// reference tonwallet/TonWalletApplet.cryptoHandler
+					aload_1;
+					invokevirtual 212;		// getPublicKeyWithDefaultHDPath(Ljavacard/framework/APDU;)V
+					goto L95;
+				L82:	getfield_a_this 59;		// reference tonwallet/TonWalletApplet.cryptoHandler
+					aload_1;
+					invokevirtual 213;		// signShortMessage(Ljavacard/framework/APDU;)V
+					goto L95;
+				L83:	getfield_a_this 59;		// reference tonwallet/TonWalletApplet.cryptoHandler
+					aload_1;
+					invokevirtual 214;		// signShortMessageWithDefaultPath(Ljavacard/framework/APDU;)V
+					goto L95;
+				L84:	getfield_a_this 62;		// reference tonwallet/TonWalletApplet.pinHandler
+					aload_1;
+					invokevirtual 215;		// checkPin(Ljavacard/framework/APDU;)V
+					goto L95;
+				L85:	getfield_a_this 65;		// reference tonwallet/TonWalletApplet.recoveryDataHandler
+					aload_1;
+					invokevirtual 216;		// addRecoveryDataPart(Ljavacard/framework/APDU;)V
+					goto L95;
+				L86:	getfield_a_this 65;		// reference tonwallet/TonWalletApplet.recoveryDataHandler
+					aload_1;
+					invokevirtual 217;		// getRecoveryDataPart(Ljavacard/framework/APDU;)V
+					goto L95;
+				L87:	getfield_a_this 65;		// reference tonwallet/TonWalletApplet.recoveryDataHandler
+					aload_1;
+					invokevirtual 218;		// resetRecoveryData(Ljavacard/framework/APDU;)V
+					goto L95;
+				L88:	getfield_a_this 65;		// reference tonwallet/TonWalletApplet.recoveryDataHandler
+					aload_1;
+					invokevirtual 219;		// getHashOfRecoveryData(Ljavacard/framework/APDU;)V
+					goto L95;
+				L89:	getfield_a_this 65;		// reference tonwallet/TonWalletApplet.recoveryDataHandler
+					aload_1;
+					invokevirtual 220;		// getRecoveryDataLen(Ljavacard/framework/APDU;)V
+					goto L95;
+				L90:	getfield_a_this 65;		// reference tonwallet/TonWalletApplet.recoveryDataHandler
+					aload_1;
+					invokevirtual 221;		// isRecoveryDataSet(Ljavacard/framework/APDU;)V
+					goto L95;
+				L91:	getfield_a_this 66;		// reference tonwallet/TonWalletApplet.serialNumberHandler
+					aload_1;
+					invokevirtual 194;		// getSerialNumber(Ljavacard/framework/APDU;)V
+					goto L95;
+				L92:	getfield_a_this 63;		// reference tonwallet/TonWalletApplet.commonHandler
+					aload_1;
+					invokevirtual 188;		// getAppInfo(Ljavacard/framework/APDU;)V
+					goto L95;
+				L93:	sspush 27904;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+					goto L95;
+				L94:	sspush 28160;
+					invokestatic 75;		// javacard/framework/ISOException.throwIt(S)V
+				L95:	return;
+		}
+
+	}
+
+	.class public Utils 14 extends 0.0 {		// extends java/lang/Object
+
+		.publicMethodTable 1 {
+			equals(Ljava/lang/Object;)Z;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public <init>()V 0 {
+			.stack 1;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 71;		// java/lang/Object.<init>()V
+					return;
+		}
+
+		.method public static printArray([BSS)V 1 {
+			.stack 3;
+			.locals 1;
+
+				L0:	sload_1;
+					sstore_3;
+				L1:	goto L3;
+				L2:	aload_0;
+					sload_3;
+					baload;
+					invokestatic 229;		// com/ftsafe/javacard/debug/DebugHelper.print(B)V
+					sinc 3 1;
+				L3:	sload_3;
+					sload_1;
+					sload_2;
+					sadd;
+					if_scmplt L2;
+				L4:	invokestatic 228;		// com/ftsafe/javacard/debug/DebugHelper.println()V
+					invokestatic 228;		// com/ftsafe/javacard/debug/DebugHelper.println()V
+					return;
+		}
+
+	}
+
+}
